@@ -2,10 +2,25 @@
 
 <br>
 
-<h1 id="welcome">Welcome, {{uc.userObject.userName}}!</h1>
+<h1 id="welcome">Welcome, {{vm.userObject.userName}}!</h1>
 
 <div class="container">
-    <div class="well">
-        <h2>Wishlist #1</h2>
+    <p><button class="btn btn-primary" style="font-size: 2em;" ng-click="startNewList = !startNewList">Start a new list</button></p>
+
+    <div ng-hide="startNewList">
+        <form>
+            <div class="form-group">
+                <label for="wishlist.name"><button class="btn">Wishlist Name</button></label>
+                <input type="text" placeholder="name of list" ng-model="vm.newList.name" name="wishlist.name">
+            </div>
+
+
+            <div class="form-group">
+                <label for="wishlist.description"><button class="btn">Description</button></label>
+                <input type="text" placeholder="whats the occasion?" ng-model="vm.newList.description" name="wishlist.description">
+            </div>
+
+            <button class="btn btn-danger" ng-click="vm.startList(vm.newList)">Add list!</button>
+        </form>
     </div>
 </div>

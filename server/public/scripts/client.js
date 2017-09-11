@@ -7,15 +7,15 @@ myApp.config(function($routeProvider, $locationProvider) {
   $routeProvider
     .when('/home', {
       templateUrl: '/views/templates/home.html',
-      controller: 'LoginController as lc',
+      controller: 'LoginController as vm',
     })
     .when('/register', {
       templateUrl: '/views/templates/register.html',
-      controller: 'LoginController as lc'
+      controller: 'LoginController as vm'
     })
     .when('/user', {
       templateUrl: '/views/templates/user.html',
-      controller: 'UserController as uc',
+      controller: 'UserController as vm',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();
@@ -24,7 +24,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/info', {
       templateUrl: '/views/templates/info.html',
-      controller: 'InfoController',
+      controller: 'InfoController as vm',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();
