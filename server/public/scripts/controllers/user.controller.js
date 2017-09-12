@@ -1,15 +1,20 @@
 myApp.controller('UserController', function (UserService, ListService) {
-  console.log('UserController created');
-
   var self = this;
+  console.log('UserController created');
+  self.userService = UserService;
+  self.userObject = { data: {} };
   self.userObject = UserService.userObject;
-  //console.log('userObject: ', self.userObject);
+  self.wishlists = ListService.wishlists;
 
+  console.log('userObject: ', self.userObject);
 
+  //handles post route
   self.startList = (newList) => {
     self.newList.userId = self.userObject.userId;
-    console.log('New wishlist as: ', self.newList);
+    //console.log('New wishlist as: ', self.newList);
     ListService.startList(newList);
   }
 
+  //handles get route
+  ListService.getLists(self.userObject.userId);
 });

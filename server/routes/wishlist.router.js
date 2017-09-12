@@ -33,4 +33,22 @@ router.post('/', function (req, res) {
     }
 });
 
+router.get('/:id', function (req, res){
+    if (req.isAuthenticated){
+        Wishlist.find({
+            userId: req.params.id
+        }, function (err, lists){
+            if (err){
+                console.log('Error finding lists: ', err);
+                res.sendStatus(500);
+            } else {
+                console.log('Lists received: ', lists);
+                res.send(lists);
+            }
+        });
+    } else {
+        res.sendStatus(403);
+    }
+});
+
 module.exports = router;

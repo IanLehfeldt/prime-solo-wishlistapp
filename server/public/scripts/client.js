@@ -35,3 +35,5 @@ myApp.config(function($routeProvider, $locationProvider) {
       redirectTo: 'home'
     });
 });
+
+//Set up route params for wishlist lists

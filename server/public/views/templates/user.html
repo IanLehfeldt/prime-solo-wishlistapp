@@ -2,7 +2,7 @@
 
 <br>
 
-<h1 id="welcome">Welcome, {{vm.userObject.userName}}!</h1>
+<h1 style="padding: 8px;">Welcome, {{vm.userObject.userName}}!</h1>
 
 <div class="container">
     <p><button class="btn btn-primary" style="font-size: 2em;" ng-click="startNewList = !startNewList">Start a new list</button></p>
@@ -22,5 +22,21 @@
 
             <button class="btn btn-danger" ng-click="vm.startList(vm.newList)">Add list!</button>
         </form>
+    </div>
+
+    <br>
+
+    <div class="container">
+        <h2>Current Lists:</h2>
+        <br>
+        <div class="row">
+            <div class="col-3-md" ng-repeat="list in vm.wishlists.list">
+                <button class="btn">
+                    <!-- <a ng-href=""> -->
+                    {{list}}
+                    <!-- </a> -->
+                </button>
+            </div>
+        </div>
     </div>
 </div>
