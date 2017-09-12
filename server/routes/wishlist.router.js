@@ -11,7 +11,21 @@ router.post('/', function (req, res) {
                 console.log('Error saving to mongo: ', err);
                 res.sendStatus(500);
             } else {
-                res.sendStatus(200);
+                Users.findByIdAndUpdate(
+                    { _id: req.body.userId },
+                    {
+                        $push: {
+                            "wishlists": req.body.name
+                        }
+                    }, function (err, data) {
+                        if (err) {
+                            console.log('Error updating userlist: ', err);
+                           res.sendStatus(500);
+                        } else {
+                            res.sendStatus(200);
+                        }
+                    }
+                )
             }
         });
     } else {

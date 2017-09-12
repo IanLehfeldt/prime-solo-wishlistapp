@@ -3,10 +3,17 @@ myApp.controller('UserController', function(UserService, ListService) {
   var self = this;
   self.userService = UserService;
   self.userObject = UserService.userObject;
+  console.log('userObject: ', self.userObject);
+  
+  
+  self.newList = {
+    userId: self.userObject.userId
+  }
+  
 
-  self.startList = (newList) => {
-    console.log('New wishlist as: ', newList);
-    ListService.startList(newList);
+  self.startList = () => {
+    console.log('New wishlist as: ', self.newList); 
+    ListService.startList(self.newList);
   }
   
 });
