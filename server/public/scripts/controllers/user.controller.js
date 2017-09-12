@@ -12,6 +12,7 @@ myApp.controller('UserController', function (UserService, ListService, $http) {
       if (response.data.username) {
         self.userObject.userId = response.data.id;
         self.userObject.userName = response.data.username;
+        ListService.getLists(self.userObject.userId);
       } else {
         console.log('Failure getting user');
       }
@@ -34,5 +35,4 @@ myApp.controller('UserController', function (UserService, ListService, $http) {
 
   //handles get route(s)
   self.getuser();
-  ListService.getLists();
 });
