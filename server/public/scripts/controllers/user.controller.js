@@ -1,12 +1,29 @@
-myApp.controller('UserController', function (UserService, ListService) {
+myApp.controller('UserController', function (UserService, ListService, $http) {
   var self = this;
   console.log('UserController created');
+
+  // handles log out
   self.userService = UserService;
-  self.userObject = { data: {} };
-  self.userObject = UserService.userObject;
+
+  // handles new user call
+  self.userObject = {};
+  self.getuser = () => {
+    $http.get('/user').then(function (response) {
+      if (response.data.username) {
+        self.userObject.userId = response.data.id;
+        self.userObject.userName = response.data.username;
+      } else {
+        console.log('Failure getting user');
+      }
+    });
+  }
+  console.log('userObject: ', self.userObject);
+  // 
+
+  // handles wishlist population
   self.wishlists = ListService.wishlists;
 
-  console.log('userObject: ', self.userObject);
+
 
   //handles post route
   self.startList = (newList) => {
@@ -15,6 +32,7 @@ myApp.controller('UserController', function (UserService, ListService) {
     ListService.startList(newList);
   }
 
-  //handles get route
-  ListService.getLists(self.userObject.userId);
+  //handles get route(s)
+  self.getuser();
+  ListService.getLists();
 });

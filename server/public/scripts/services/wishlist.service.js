@@ -3,6 +3,8 @@ myApp.service('ListService', function ($http, $location) {
     self.wishlists = {};
 
     self.getLists = (userId) => {
+        console.log('userId: ', userId);
+        
         $http.get('/wishlist/' + userId).then(function (response) {
             self.wishlists = response.data;
             console.log("wishlists recieved: ", self.wishlists);
