@@ -30,6 +30,7 @@ myApp.service('ListService', function ($http, $location) {
     self.addItem = (item) => {
         $http.post('/wishlist/additem', item).then(function(response){
             console.log('Item inserted into DB: ', response);
+            self.getList(item.list);
         });
     }
     //end handling items

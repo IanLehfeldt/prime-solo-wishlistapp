@@ -1,25 +1,7 @@
 <div ng-include="'views/partials/nav.html'"></div>
 
-<br>
-
-<h1>This is the wishlist view!!</h1>
 
 <br>
-    {{vm.currentList.list.items}}
-
-<p>
-    {{vm.currentList.list.name}}
-</p>
-<p>
-    {{vm.currentList.list.description}}
-</p>
-<p ng-repeat="item in vm.currentList.list.items">
-    {{item.name}}
-    {{item.description}}
-    <span ng-if="{{item.link}}">
-    {{item.link}}
-    </span>
-</p>
 
 <p><button class="btn btn-primary" style="font-size: 1em;" ng-click="addNewItem = !addNewItem">Add to the List!</button></p>
 
@@ -46,4 +28,30 @@
         </div>
         <button class="btn btn-warning" ng-click="vm.addItem(vm.item)">Add!</button>
     </form>
+</div>
+
+<div class="container">
+    <h3>
+        {{vm.currentList.list.name}}
+    </h3>
+    <h4>
+        {{vm.currentList.list.description}}
+    </h4>
+    <div class="container">
+        <div class="row">
+            <div class='itemDiv col-sm-3' ng-repeat="item in vm.currentList.list.items">
+                <p>
+                    {{item.name}}
+                </p>
+                <p>
+                    {{item.description}}
+                </p>
+                <p>
+                    <button class="btn btn-info" ng-if="item.link != null">
+                        {{item.link}}
+                    </button>
+                </p>
+            </div>
+        </div>
+    </div>
 </div>

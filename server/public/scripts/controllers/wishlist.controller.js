@@ -14,7 +14,6 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
     console.log('Item to send to server: ', item);
     // function
     ListService.addItem(item);
-    ListService.getList($routeParams.id);
   }
 }]);
 //Source wishcontroller into index, set up to handle wishlist params
