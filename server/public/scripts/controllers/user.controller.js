@@ -23,6 +23,8 @@ myApp.controller('UserController', function (UserService, ListService, $http) {
 
   // handles wishlist population
   self.wishlists = ListService.wishlists;
+  console.log('Wishlists recieved: ', ListService.wishlists);
+  
 
 
 

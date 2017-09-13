@@ -31,6 +31,15 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/wishlist/:id', {
+      templateUrl: '/views/templates/wishlist.html',
+      controller: 'WishController as vm',
+      resolve: {
+        getuser: function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       redirectTo: 'home'
     });
