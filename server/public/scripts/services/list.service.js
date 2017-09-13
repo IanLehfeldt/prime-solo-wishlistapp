@@ -3,6 +3,7 @@ myApp.service('ListService', function ($http, $location) {
     self.wishlists = { lists: [] };
     self.currentList = { list: {} };
 
+    // handling wishlists
     self.getLists = (userId) => {
         console.log('userId: ', userId);
 
@@ -18,15 +19,19 @@ myApp.service('ListService', function ($http, $location) {
         });
     }
 
-    // self.getList = (paramId) => {
-    //     $http.get({
-    //         method: 'GET',
-    //         url: '/wishlist/list',
-    //         params: {
-    //             id: paramId
-    //         }
-    //     }).then(function (response) {
-    //         self.currentList.list = response.data;
-    //     });
-    // }
+    self.getList = (paramId) => {
+        $http.get('/wishlist/list/' + paramId).then(function (response) {
+            self.currentList.list = response.data;
+        });
+    }
+    //end handling wishlists
+
+    //handling items
+    self.addItem = (item) => {
+        $http.post('/wishlist/additem', item).then(function(response){
+            console.log('Item inserted into DB: ', response);
+        });
+    }
+    //end handling items
+
 });
