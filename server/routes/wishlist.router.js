@@ -34,6 +34,45 @@ router.post('/', function (req, res) {
     }
 });
 
+router.delete('/:id', function (req, res) {
+    if (req.isAuthenticated) {
+        Wishlist.findByIdAndRemove(
+            {
+                _id: req.params.id
+            },
+            function (err) {
+                if (err) {
+                    console.log('Error deleting list: ', err);
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(200);
+                }
+            })
+    } else {
+        res.sendStatus(403);
+    }
+});
+
+router.delete('/:id', function (req, res) {
+    var listId = req.params.id;
+    if (req.isAuthenticated) {
+        Wishlist.findByIdAndRemove(
+            {
+                _id: listId
+            },
+            function (err) {
+                if (err) {
+                    console.log('Error deleting wishlist: ', err);
+                    res.sendStatus(500);
+                } else {
+
+                }
+            })
+    } else {
+        res.sendStatus(403);
+    }
+})
+
 router.get('/:id', function (req, res) {
     if (req.isAuthenticated) {
         Wishlist.find({
@@ -144,7 +183,7 @@ router.put('/deleteitem/', function (req, res) {
                         "name": item.name
                     }
                 }
-            }, function (err){
+            }, function (err) {
                 if (err) {
                     console.log('Error removing item: ', err);
                     res.sendStatus(500);

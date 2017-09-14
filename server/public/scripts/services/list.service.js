@@ -15,8 +15,16 @@ myApp.service('ListService', function ($http, $location) {
 
     self.startList = (newList) => {
         $http.post('/wishlist', newList).then(function (response) {
-            console.log("Server handshake: ", response);
+            console.log("Server handshake: ", response.data);
+            self.getLists(newList.userId);
         });
+    }
+
+    self.deleteList = (list) => {
+        $http.delete('/wishlist/' + list._id).then(function (response) {
+            console.log('List deleted: ', response.data);
+            self.getLists(list.userId);
+        })
     }
 
     self.getList = (paramId) => {
@@ -29,7 +37,7 @@ myApp.service('ListService', function ($http, $location) {
     //handling items
     self.addItem = (item) => {
         $http.post('/wishlist/additem', item).then(function(response){
-            console.log('Item inserted into DB: ', response);
+            console.log('Item inserted into DB: ', response.data);
             self.getList(item.list);
         });
     }

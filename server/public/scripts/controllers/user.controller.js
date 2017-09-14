@@ -28,12 +28,20 @@ myApp.controller('UserController', function (UserService, ListService, $http) {
 
 
 
-  //handles post route
+  //list route handling
   self.startList = (newList) => {
     self.newList.userId = self.userObject.userId;
     //console.log('New wishlist as: ', self.newList);
     ListService.startList(newList);
   }
+
+  self.deleteList = (list) => {
+    list.userId = self.userObject.userId;
+    console.log('Delete list: ', list);
+    ListService.deleteList(list);
+  }
+
+  //end list route handling
 
   //handles get route(s)
   self.getuser();

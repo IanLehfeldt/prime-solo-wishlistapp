@@ -31,15 +31,30 @@
         <div class="row">
             <div ng-repeat="list in vm.wishlists.lists" class="col-sm-4" ng-model="wishlists">
                 <p>
-                    <a ng-href="#/wishlist/{{list._id}}">
-                        <div class="listDiv">
 
-                            {{list.name}}
-                            <br> 
-                            {{list.description}}
+                    <div class="listDiv">
 
-                        </div>
-                    </a>
+                        <span ng-hide="listUpdate">{{list.name}}</span>
+                        <span ng-show="listUpdate"><input type="text" placeholder="{{list.name}}" class="form-control"></span>
+                        <br> 
+
+                        <span ng-hide="listUpdate">{{list.description}}</span>
+                        <span ng-show="listUpdate"><input type="text" placeholder="{{list.description}}" class="form-control"></span>
+
+                        <br>
+
+                        <p class="btn-group">
+                            <a ng-href="#/wishlist/{{list._id}}">
+                                <button class="btn btn-sm btn-info"> Items: {{list.items.length}}</button>
+                            </a>
+
+                            <button class="btn btn-sm btn-warning" ng-click="listUpdate = !listUpdate">Update</button>
+
+                            <button class="btn btn-sm btn-warning" ng-click="vm.saveList(list)" ng-show="listUpdate">Save</button>
+
+                            <button class="btn btn-sm btn-danger" ng-click="vm.deleteList(list)">Delete</button>
+                        </p>
+                    </div>
                 </p>
             </div>
         </div>
