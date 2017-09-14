@@ -39,18 +39,40 @@
     </h4>
     <div class="container">
         <div class="row">
-            <div class='itemDiv col-sm-3' ng-repeat="item in vm.currentList.list.items">
+
+            <div class='itemDiv col-sm-5' ng-repeat="item in vm.currentList.list.items">
+
                 <p>
+                    <span>
                     {{item.name}}
+                    </span>
                 </p>
-                <p>
+
+                <p> <span ng-hide="itemUpdater">
                     {{item.description}}
+                    </span>
+                    <input type="text" placeholder="{{item.description}}" ng-show="itemUpdater" ng-model="item.description" class="form-control">
                 </p>
                 <p>
-                    <button class="btn btn-info" ng-if="item.link != null">
-                        {{item.link}}
-                    </button>
+                    <input type="text" placeholder="{{item.link}}" ng-show="itemUpdater" ng-model="item.link" class="form-control">
                 </p>
+
+                <p class="btn-group">
+
+                    <a ng-href="{{item.link}}">
+                    <button class="btn btn-sm btn-info" ng-if="item.link != null">
+                        Link!
+                    </button>
+                    </a>
+
+                    <button class="btn btn-sm btn-warning" ng-click="itemUpdater = !itemUpdater">Update</button>
+
+                    <button class="btn btn-sm btn-warning" ng-click="vm.updateItem(item)" ng-show="itemUpdater">Save</button>
+
+                    <button class="btn btn-sm btn-danger" ng-click="vm.deleteItem()">Delete</button>
+
+                </p>
+
             </div>
         </div>
     </div>

@@ -28,7 +28,7 @@ router.post('/', function (req, res) {
                     }
                 )
             }
-        });
+        })
     } else {
         res.sendStatus(403);
     }
@@ -46,7 +46,7 @@ router.get('/:id', function (req, res) {
                 console.log('Lists received: ', lists);
                 res.send(lists);
             }
-        });
+        })
     } else {
         res.sendStatus(403);
     }
@@ -64,7 +64,7 @@ router.get('/list/:id', function (req, res) {
                 console.log('List received: ', list);
                 res.send(list[0]);
             }
-        });
+        })
     } else {
         res.sendStatus(403);
     }
@@ -76,7 +76,7 @@ router.post('/additem', function (req, res) {
     var item = req.body;
     if (req.isAuthenticated) {
         Wishlist.findOneAndUpdate({
-            _id: req.body.list
+            _id: item.list
         },
             {
                 $push: {
@@ -95,7 +95,37 @@ router.post('/additem', function (req, res) {
                 } else {
                     res.sendStatus(200);
                 }
-            });
+            })
+    } else {
+        res.sendStatus(403);
+    }
+});
+
+router.put('/edititem', function (req, res) {
+    var item = req.body;
+    console.log('item to save: ', item);
+
+    if (req.isAuthenticated) {
+        Wishlist.findOneAndUpdate({
+            "_id": item.list,
+            "items.name": item.name
+        },
+            {
+                $set: {
+                    "items.$.name": item.name,
+                    "items.$.description": item.description,
+                    "items.$.link": item.link,
+                    "items.$.bought": item.bought,
+                    "items.$.secret": item.secret
+                }
+            }, function (err) {
+                if (err) {
+                    console.log('Error updating database: ', err);
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(200);
+                }
+            })
     } else {
         res.sendStatus(403);
     }

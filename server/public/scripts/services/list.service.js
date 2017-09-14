@@ -33,6 +33,13 @@ myApp.service('ListService', function ($http, $location) {
             self.getList(item.list);
         });
     }
+
+    self.editItem = (itemEdit) => {
+        $http.put('/wishlist/edititem', itemEdit).then(function (response){
+            console.log('Item updated!', response);
+            self.getList(itemEdit.list)
+        })
+    }
     //end handling items
 
 });
