@@ -23,8 +23,10 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
     }
 
 
-    self.deleteItem = () => {
+    self.deleteItem = (item) => {
+        item.list = $routeParams.id;
         console.log('Delete item button is clicked!');
+        ListService.deleteItem(item);
     }
 }]);
 //Source wishcontroller into index, set up to handle wishlist params

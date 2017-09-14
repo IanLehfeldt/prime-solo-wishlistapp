@@ -103,7 +103,7 @@ router.post('/additem', function (req, res) {
 
 router.put('/edititem', function (req, res) {
     var item = req.body;
-    console.log('item to save: ', item);
+    //console.log('item to save: ', item);
 
     if (req.isAuthenticated) {
         Wishlist.findOneAndUpdate({
@@ -130,5 +130,31 @@ router.put('/edititem', function (req, res) {
         res.sendStatus(403);
     }
 });
+
+router.put('/deleteitem/', function (req, res) {
+    var item = req.body;
+    if (req.isAuthenticated) {
+        Wishlist.findOneAndUpdate({
+            "_id": item.list,
+        },
+            {
+                $pull: {
+                    "items":
+                    {
+                        "name": item.name
+                    }
+                }
+            }, function (err){
+                if (err) {
+                    console.log('Error removing item: ', err);
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(200);
+                }
+            })
+    } else {
+        res.sendStatus(403);
+    }
+})
 // end item routes
 module.exports = router;

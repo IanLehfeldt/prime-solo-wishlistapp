@@ -36,8 +36,15 @@ myApp.service('ListService', function ($http, $location) {
 
     self.editItem = (itemEdit) => {
         $http.put('/wishlist/edititem', itemEdit).then(function (response){
-            console.log('Item updated!', response);
-            self.getList(itemEdit.list)
+            console.log('Item updated!', response.data);
+            self.getList(itemEdit.list);
+        })
+    }
+
+    self.deleteItem = (item) => {
+        $http.put('wishlist/deleteitem', item).then(function(response){
+            console.log('Item deleted!', response.data);
+            self.getList(item.list);
         })
     }
     //end handling items
