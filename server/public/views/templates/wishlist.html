@@ -2,11 +2,13 @@
 
 
 <br>
-
-<p><button class="btn btn-primary" style="font-size: 1em;" ng-click="addNewItem = !addNewItem">Add to the List!</button></p>
+<div class="container">
+    <p><button class="btn btn-primary" style="font-size: 1em;" ng-click="addNewItem = !addNewItem">Add to the List!</button>
+    </p>
+</div>
 
 <!-- Now we gotta put stuff inside the list yo -->
-<div ng-show="addNewItem">
+<div ng-show="addNewItem" class="container">
     <form class="form-horizontal">
         <div class="form-group">
             <label for="itemName" class="control-label col-sm-2">Add an item:</label>
@@ -29,6 +31,9 @@
         <button class="btn btn-warning" ng-click="vm.addItem(vm.item)">Add!</button>
     </form>
 </div>
+
+
+<br>
 
 <div class="container">
     <h3>
@@ -77,3 +82,9 @@
         </div>
     </div>
 </div>
+<br>
+
+
+    <p class="container">
+        <button class="btn btn-danger" style="font-size: 2em;" ng-click="vm.deleteCurrentList()">Delete Current List</button>
+    </p>

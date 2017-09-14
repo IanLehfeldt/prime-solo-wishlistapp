@@ -5,6 +5,7 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
     self.currentList = ListService.currentList;
     ListService.getList($routeParams.id);
 
+    // handling items
     self.addItem = (item) => {
         // shoving events to handle
         item.list = $routeParams.id;
@@ -28,5 +29,13 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
         console.log('Delete item button is clicked!');
         ListService.deleteItem(item);
     }
+    // end handling items
+
+    // handling delete current list
+    self.deleteCurrentList = () => {
+        console.log('Current list delete!!');
+        ListService.deleteCurrentList($routeParams.id);
+    }
+    //
 }]);
 //Source wishcontroller into index, set up to handle wishlist params

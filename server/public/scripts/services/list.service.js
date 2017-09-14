@@ -1,4 +1,4 @@
-myApp.service('ListService', function ($http, $location) {
+myApp.service('ListService', ['$http', '$location', function ($http, $location) {
     var self = this;
     self.wishlists = { lists: [] };
     self.currentList = { list: {} };
@@ -24,6 +24,13 @@ myApp.service('ListService', function ($http, $location) {
         $http.delete('/wishlist/' + list._id).then(function (response) {
             console.log('List deleted: ', response.data);
             self.getLists(list.userId);
+        })
+    }
+
+    self.deleteCurrentList = (currentList) => {
+        $http.delete('/wishlist/' + currentList).then(function (response) {
+            console.log('Deleting current list: ', response.data);
+            $location.path('/user');
         })
     }
 
@@ -57,4 +64,4 @@ myApp.service('ListService', function ($http, $location) {
     }
     //end handling items
 
-});
+}]);
