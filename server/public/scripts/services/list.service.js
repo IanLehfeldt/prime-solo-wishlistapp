@@ -20,6 +20,13 @@ myApp.service('ListService', ['$http', '$location', function ($http, $location) 
         });
     }
 
+    self.saveList = (list) => {
+        $http.put('/wishlist', list).then(function (response){
+            console.log('List updated: ', response.data);
+            self.getLists(list.userId);
+        })
+    }
+
     self.deleteList = (list) => {
         $http.delete('/wishlist/' + list._id).then(function (response) {
             console.log('List deleted: ', response.data);

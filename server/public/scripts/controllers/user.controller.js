@@ -37,8 +37,14 @@ myApp.controller('UserController', function (UserService, ListService, $http) {
 
   self.deleteList = (list) => {
     list.userId = self.userObject.userId;
-    console.log('Delete list: ', list);
+    //console.log('Delete list: ', list);
     ListService.deleteList(list);
+  }
+
+  self.saveList = (list) => {
+    list.userId = self.userObject.userId;
+    console.log('Editing list: ', list);
+    ListService.saveList(list);
   }
 
   //end list route handling

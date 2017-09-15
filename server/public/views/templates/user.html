@@ -29,17 +29,17 @@
     <div class="container">
         <h2>Current Lists:</h2>
         <div class="row">
-            <div ng-repeat="list in vm.wishlists.lists" class="col-sm-4" ng-model="wishlists">
+            <div ng-repeat="list in vm.wishlists.lists" class="col-md-4" ng-model="wishlists">
                 <p>
 
                     <div class="listDiv">
 
                         <span ng-hide="listUpdate">{{list.name}}</span>
-                        <span ng-show="listUpdate"><input type="text" placeholder="{{list.name}}" class="form-control"></span>
+                        <span ng-show="listUpdate"><input type="text" placeholder="{{list.name}}" class="form-control" ng-model="list.name"></span>
                         <br> 
 
                         <span ng-hide="listUpdate">{{list.description}}</span>
-                        <span ng-show="listUpdate"><input type="text" placeholder="{{list.description}}" class="form-control"></span>
+                        <span ng-show="listUpdate"><input type="text" placeholder="{{list.description}}" class="form-control" ng-model="list.description"></span>
 
                         <br>
 

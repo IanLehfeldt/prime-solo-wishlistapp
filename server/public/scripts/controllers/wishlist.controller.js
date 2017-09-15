@@ -37,5 +37,14 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
         ListService.deleteCurrentList($routeParams.id);
     }
     //
+    // uib alert test
+    self.alerts = [
+        { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
+        { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
+    ];
+    self.closeAlert = function (index) {
+        self.alerts.splice(index, 1);
+    };
+    // end test
 }]);
 //Source wishcontroller into index, set up to handle wishlist params

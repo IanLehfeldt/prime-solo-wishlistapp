@@ -3,13 +3,22 @@
 
 <head>
     <title>Solo Project</title>
+
     <!-- Styles -->
-    <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="styles/style.css">
 
     <!-- Vendors -->
     <script type="text/javascript" src="vendors/angular/angular.min.js"></script>
     <script type="text/javascript" src="vendors/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="vendors/angular/angular-animate.min.js"></script>
+
+    <!-- BootstrapUI -->
+    <script type="text/javascript" src="styles/bootstrap/ui-bootstrap.js"></script>
+    <script type="text/javascript" src="styles/bootstrap/ui-bootstrap-tpls.js"></script>
+    <link rel="stylesheet" href="styles/bootstrap/ui-bootstrap-csp.css">
+    
+
 
     <!-- Client -->
     <script type="text/javascript" src="scripts/client.js"></script>
@@ -24,13 +33,15 @@
     <script type="text/javascript" src="scripts/services/user.service.js"></script>
     <script src="scripts/services/list.service.js"></script>
 
+    <!-- Angular-Material -->
+    <script src=""></script>
+
 </head>
 
 <body ng-app="myApp">
 
     <header ng-include="'/views/partials/header.html'"></header>
-    
-    
+
     <main ng-view></main>
 
 </body>
