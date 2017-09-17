@@ -1,4 +1,4 @@
-myApp.controller('WishController', ['UserService', 'ListService', '$routeParams', '$http', function (UserService, ListService, $routeParams, $http) {
+myApp.controller('WishController', ['UserService', 'ListService', '$routeParams', '$http', '$location', function (UserService, ListService, $routeParams, $http, $location) {
     console.log('WishController created');
     var self = this;
     self.userService = UserService;
@@ -19,7 +19,10 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
         });
     }
     self.wishlists = ListService.wishlists;
-    
+
+    self.login = () => {
+        $location.path('/home')
+    }
     // end user auth
 
     // handling items
