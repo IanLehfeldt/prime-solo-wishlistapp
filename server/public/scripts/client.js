@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap']);
+var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 
 /// Routes ///
 myApp.config(function($routeProvider, $locationProvider) {
@@ -33,12 +33,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/wishlist/:id', {
       templateUrl: '/views/templates/wishlist.html',
-      controller: 'WishController as vm',
-      resolve: {
-        getuser: function(UserService){
-          return UserService.getuser();
-        }
-      }
+      controller: 'WishController as vm'
     })
     .otherwise({
       redirectTo: 'home'

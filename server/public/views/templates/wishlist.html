@@ -1,7 +1,7 @@
-<div ng-include="'views/partials/nav.html'"></div>
+<div ng-include="'views/partials/nav.html'" ng-hide="!vm.userObject.userId"></div>
 
 <div class="container divPad">
-    <div class="form-group form-inline">
+    <div class="form-group form-inline" ng-hide="!vm.userObject.userId">
         <button class="btn btn-primary" style="font-size: 1em;" ng-click="addNewItem = !addNewItem">Add to the List!</button>
     </div>
 </div>
@@ -60,7 +60,7 @@
                     <input type="text" placeholder="Add a link!! {{item.link}}" ng-show="itemUpdater" ng-model="item.link" class="form-control">
                 </p>
 
-                <p class="btn-group">
+                <p class="btn-group" ng-hide="!vm.userObject.userId">
 
                     <a ng-href="{{item.link}}">
                     <button class="btn btn-sm btn-info" ng-if="item.link != ''">
@@ -83,6 +83,6 @@
 
 
 
-<p class="container divPad">
+<p class="container divPad" ng-hide="!vm.userObject.userId">
     <button class="btn btn-danger" style="font-size: 2em;" ng-click="vm.deleteCurrentList()">Delete Current List</button>
 </p>
