@@ -1,53 +1,13 @@
 <div ng-include="'views/partials/nav.html'"></div>
 
-<!-- UIB Alert Test:
-<div uib-alert ng-repeat="alert in vm.alerts" ng-class="'alert-' + (alert.type || 'warning')" close="vm.closeAlert($index)">
-    {{alert.msg}}
-</div>
-
-UIB Dropdown Test:
-<div class="btn-group" uib-dropdown>
-    <button id="split-button" type="button" class="btn btn-danger">Action</button>
-    <button type="button" class="btn btn-danger" uib-dropdown-toggle>
-        <span class="caret"></span>
-        <span class="sr-only">Split button!</span>
-      </button>
-    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
-        <li role="menuitem"><a href="#">Action</a></li>
-        <li role="menuitem"><a href="#">Another action</a></li>
-        <li role="menuitem"><a href="#">Something else here</a></li>
-        <li class="divider"></li>
-        <li role="menuitem"><a href="#">Separated link</a></li>
-    </ul>
-</div> -->
-
-<br>
-<div class="container">
-
-    <div class="btn-group">
-
-        <div uib-dropdown>
-
-            <button class="btn btn-warning" type="button" data-toggle="dropdown" uib-dropdown-toggle id="quicklist">Quick List
-            <span class="caret"></span>
-            </button>
-
-            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="quicklist">
-                <li role="menuitem"><a href="#">List 1</a></li>
-                <li role="menuitem"><a href="#">List 2</a></li>
-                <li role="menuitem"><a href="#">List 3</a></li>
-            </ul>
-
-        </div>
-
+<div class="container divPad">
+    <div class="form-group form-inline">
         <button class="btn btn-primary" style="font-size: 1em;" ng-click="addNewItem = !addNewItem">Add to the List!</button>
-
     </div>
 </div>
 
 <!-- Now we gotta put stuff inside the list yo -->
-<br>
-<div ng-show="addNewItem" class="container">
+<div ng-show="addNewItem" class="container divPad">
     <form class="form-horizontal">
         <div class="form-group">
             <label for="itemName" class="control-label col-sm-2">Add an item:</label>
@@ -72,7 +32,7 @@ UIB Dropdown Test:
 </div>
 
 
-<br>
+
 
 <div class="container">
     <h3>
@@ -84,8 +44,7 @@ UIB Dropdown Test:
     <div class="container">
         <div class="row">
 
-            <div class='itemDiv col-sm-5' ng-repeat="item in vm.currentList.list.items">
-
+            <div class='itemDiv col-sm-5 divPad' ng-repeat="item in vm.currentList.list.items">
                 <p>
                     <span>
                     {{item.name}}
@@ -104,7 +63,7 @@ UIB Dropdown Test:
                 <p class="btn-group">
 
                     <a ng-href="{{item.link}}">
-                    <button class="btn btn-sm btn-info" ng-if="item.link != null">
+                    <button class="btn btn-sm btn-info" ng-if="item.link != ''">
                         Link!
                     </button>
                     </a>
@@ -121,9 +80,9 @@ UIB Dropdown Test:
         </div>
     </div>
 </div>
-<br>
 
 
-<p class="container">
+
+<p class="container divPad">
     <button class="btn btn-danger" style="font-size: 2em;" ng-click="vm.deleteCurrentList()">Delete Current List</button>
 </p>

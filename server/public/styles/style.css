@@ -92,3 +92,12 @@ li a:hover {
   margin: 8px;
   border-radius: 8px;
 }
+
+.divPad {
+  padding: 10px;
+}
+
+/* Prevents weird delay caused by nganimate */
+.ng-hide.ng-hide-animate{
+     display: none !important;
+}
