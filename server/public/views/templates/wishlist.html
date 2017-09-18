@@ -1,13 +1,14 @@
 <div ng-include="'views/partials/nav.html'"></div>
 
 <div class="container divPad">
-    <div class="form-group form-inline" ng-hide="vm.userObject.userId != vm.currentList.list.userId">
-        <button class="btn btn-primary" style="font-size: 1em;" ng-click="addNewItem = !addNewItem">Add to the List!</button>
+    <div class="btn-group" ng-hide="vm.userObject.userId != vm.currentList.list.userId">
+        <button class="btn btn-primary" ng-click="vm.addNewItem = !vm.addNewItem">Add to the List!</button>
+        <button class="btn btn-warning">Emailer</button>
     </div>
 </div>
 
 <!-- Now we gotta put stuff inside the list yo -->
-<div ng-show="addNewItem" class="container divPad">
+<div ng-show="vm.addNewItem" class="container divPad">
     <form class="form-horizontal">
         <div class="form-group">
             <label for="itemName" class="control-label col-sm-2">Add an item:</label>
@@ -44,7 +45,7 @@
     <div class="container">
         <div class="row">
 
-            <div class='itemDiv col-sm-5 divPad' ng-repeat="item in vm.currentList.list.items">
+            <div class='itemDiv col-sm-5 divPad' ng-repeat="item in vm.currentList.list.items" ng-style="buyStyle" ng-class="{ 'itemBought' : item.bought }">
                 <p>
                     <span>
                     {{item.name}}
@@ -59,6 +60,12 @@
                 <p>
                     <input type="text" placeholder="Add a link!! {{item.link}}" ng-show="itemUpdater" ng-model="item.link" class="form-control">
                 </p>
+
+                <div ng-hide="itemUpdater">
+                    <label class="checkbox-inline"><input type="checkbox" value="" ng-model="item.bought" ng-click="vm.updateItem(item)"> Bought It! </label>
+
+                    <label ng-hide="vm.userObject.userId" class="checkbox-inline divPad"><input type="checkbox" value="" ng-model="item.secret" ng-click="vm.updateItem(item)"> Shhhh! </label>
+                </div>
 
                 <p class="btn-group" ng-hide="vm.userObject.userId != vm.currentList.list.userId">
 
@@ -75,7 +82,6 @@
                     <button class="btn btn-sm btn-danger" ng-click="vm.deleteItem(item)">Delete</button>
 
                 </p>
-
             </div>
         </div>
     </div>
@@ -83,6 +89,8 @@
 
 
 
-<p class="container divPad" ng-hide="vm.userObject.userId != vm.currentList.list.userId">
-    <button class="btn btn-danger" style="font-size: 2em;" ng-click="vm.deleteCurrentList()">Delete Current List</button>
-</p>
+<div class="footer navbar-default navbar-fixed-bottom" ng-hide="vm.userObject.userId != vm.currentList.list.userId">
+    <div class="container">
+        <button class="btn btn-danger" style="font-size: 2em;" ng-click="vm.deleteCurrentList()">Delete Current List</button>
+    </div>
+</div>

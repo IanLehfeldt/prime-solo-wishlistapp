@@ -3,17 +3,33 @@ body, html {
   padding: 0;
   font-family: sans-serif;
   font-size: 14px;
+  background-color: #E7DFC6;
+}
+
+.footer {
+  position: relative;
+  bottom: 0;
+}
+
+/* h3, h4 {
+  color: white;
+} */
+
+.instructions {
+  background-color: #816C61;
+  padding: 15px;
+  color: #eee;
+}
+
+.navbar {
+  background-color: #816C61;
+  width: 100%;
+  border-radius: 0px;
 }
 
 .instructions .container h1 {
   font-size: 32px;
   font-weight: 600;
-}
-
-.instructions {
-  background-color: #333333;
-  color: #DDDDDD;
-  padding: 15px;
 }
 
 #entryForm {
@@ -36,22 +52,16 @@ body, html {
   margin-left: 10px;
 }
 
-.message:nth-child(odd) {
+ .message:nth-child(odd) {
    background-color: #eeeeee;
 }
 
 .message:nth-child(even) {
-  background-color: #f8f8f8;
-}
+  background-color: #eeeeee;
+} 
 
 .btn-danger{
   margin-left: 10px;
-}
-
-.navbar {
-  background-color: #333333;
-  width: 100%;
-  border-radius: 0px;
 }
 
 ul {
@@ -67,7 +77,7 @@ li {
 
 li a {
   display: block;
-  color: white;
+  color: #eeeeee;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -82,15 +92,19 @@ li a:hover {
 /* Additional CSS I'm working on: */
 
 .listDiv {
-  background-color: lightblue;
+  background-color: #2274A5;
   padding: 8px 8px;
   border-radius: 9px;
 }
 
 .itemDiv {
-  background-color: lightsalmon;
+  background-color: #2274A5;
   margin: 8px;
   border-radius: 8px;
+}
+
+.itemBought {
+  background-color: #816C61;
 }
 
 .divPad {

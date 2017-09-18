@@ -1,17 +1,15 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-
+    <!-- div shows if user is logged in -->
     <ul class="nav" ng-hide="!vm.userObject.userId">
-      <li><a href="#/user">Lists Page</a></li>
+      <li><a href="#/user">Your Lists</a></li>
       <li><a href="#/info">Info Page</a></li>
     </ul>
 
-    <ul class="nav navbar-right" ng-hide="!vm.userObject.userId">
-      <li><button class="btn btn-danger navbar-btn" ng-click="vm.userService.logout()">Log Out</button></li>
-    </ul>
+    <ul class="nav float-right">
+      <li><button class="btn btn-warning navbar-btn" ng-click="vm.userService.logout()" ng-hide="!vm.userObject.userId">Log Out</button></li>
 
-    <ul class="nav navbar-right" ng-show="!vm.userObject.userId" ng-click="vm.login()">
-      <li><button class="btn btn-info navbar-btn">Log In</button></li>
+      <li><button class="btn btn-info navbar-btn float-right" ng-show="!vm.userObject.userId" ng-click="vm.login()">Log In</button></li>
     </ul>
   </div>
 </nav>

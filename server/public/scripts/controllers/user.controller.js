@@ -33,6 +33,7 @@ myApp.controller('UserController', ['UserService', 'ListService', '$http', '$loc
   self.startList = (newList) => {
     self.newList.userId = self.userObject.userId;
     //console.log('New wishlist as: ', self.newList);
+    self.startNewList = false;
     ListService.startList(newList);
   }
 

@@ -35,6 +35,7 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
         // log checker
         //console.log('Item to send to server: ', item);
         // function
+        self.addNewItem = false;
         ListService.addItem(item);
     }
 
