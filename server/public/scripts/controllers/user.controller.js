@@ -1,11 +1,11 @@
-myApp.controller('UserController', function (UserService, ListService, $http) {
+myApp.controller('UserController', ['UserService', 'ListService', '$http', '$location', function (UserService, ListService, $http, $location) {
   var self = this;
   console.log('UserController created');
 
   // handles log out
   self.userService = UserService;
 
-  // handles new user call
+  // handles new user call, checks if user is logged in
   self.userObject = {};
   self.getuser = () => {
     $http.get('/user').then(function (response) {
@@ -15,6 +15,7 @@ myApp.controller('UserController', function (UserService, ListService, $http) {
         ListService.getLists(self.userObject.userId);
       } else {
         console.log('Failure getting user');
+        $location.path('/home');
       }
     });
   }
@@ -51,4 +52,4 @@ myApp.controller('UserController', function (UserService, ListService, $http) {
 
   //handles get route(s)
   self.getuser();
-});
+}]);

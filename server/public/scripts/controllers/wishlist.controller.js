@@ -12,7 +12,8 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
             if (response.data.username) {
                 self.userObject.userId = response.data.id;
                 self.userObject.userName = response.data.username;
-                ListService.getLists(self.userObject.userId);
+                //Call for wishlists to populate dropdown
+                //ListService.getLists(self.userObject.userId);
             } else {
                 console.log('Failure getting user');
             }
@@ -21,7 +22,7 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
     self.wishlists = ListService.wishlists;
 
     self.login = () => {
-        $location.path('/home')
+        $location.path('/home');
     }
     // end user auth
 

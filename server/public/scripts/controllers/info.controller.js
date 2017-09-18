@@ -1,4 +1,4 @@
-myApp.controller('InfoController', function (UserService, ListService, $http, $location) {
+myApp.controller('InfoController', ['UserService', 'ListService', '$http', '$location', function (UserService, ListService, $http, $location) {
   console.log('InfoController created');
   var self = this;
   self.userService = UserService;
@@ -24,4 +24,4 @@ myApp.controller('InfoController', function (UserService, ListService, $http, $l
 
   self.getuser();
   // end user auth
-});
+}]);

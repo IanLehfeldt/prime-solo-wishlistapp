@@ -1,18 +1,17 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
 
-    <ul class="nav" ng-hide="vm.userObject.userId != vm.currentList.list.userId">
+    <ul class="nav" ng-hide="!vm.userObject.userId">
       <li><a href="#/user">Lists Page</a></li>
       <li><a href="#/info">Info Page</a></li>
     </ul>
 
-    <ul class="nav navbar-right"  ng-hide="vm.userObject.userId != vm.currentList.list.userId">
+    <ul class="nav navbar-right" ng-hide="!vm.userObject.userId">
       <li><button class="btn btn-danger navbar-btn" ng-click="vm.userService.logout()">Log Out</button></li>
     </ul>
 
-    <ul class="nav navbar-right" ng-show="vm.userObject.userId != vm.currentList.list.userId" ng-click="vm.login()">
+    <ul class="nav navbar-right" ng-show="!vm.userObject.userId" ng-click="vm.login()">
       <li><button class="btn btn-info navbar-btn">Log In</button></li>
     </ul>
-
   </div>
 </nav>
