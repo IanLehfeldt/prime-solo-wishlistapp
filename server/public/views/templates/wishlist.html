@@ -67,7 +67,7 @@
                 <div class="btn-group" ng-hide="vm.userObject.userId != vm.currentList.list.userId">
 
                     <a ng-href="{{item.link}}">
-                    <button class="btn btn-info" ng-if="item.link != ''">
+                    <button class="btn btn-info" ng-hide="item.link!='' ">
                         Link!
                     </button>
                     </a>
