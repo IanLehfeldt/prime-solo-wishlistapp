@@ -1,18 +1,22 @@
-<br>  
-<div class="container">
+<div class="divPad">
   <h1 class="lead">Register User</h1>
   <h1 class="lead alert alert-danger" role="alert" ng-if="vm.message != ''">{{vm.message}}</h2>
-  <form ng-submit="vm.registerUser()">
-    <div>
-        <label for="username">Username:</label>
-        <input type="text" ng-model="vm.user.username" />
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" ng-model="vm.user.password" />
-    </div>
-    <input class="btn btn-default" type="submit" name="submit" value="Register" />
-    <a href="#home">Cancel</a>
-  </form>
+    <form>
+      <div>
+        <md-input-container>
+          <label for="username">Username:</label>
+          <input mdInput type="text" ng-model="vm.user.username" />
+        </md-input-container>
+        <md-input-container>
+          <label for="password">Password:</label>
+          <input mdInput  type="password" ng-model="vm.user.password" />
+        </md-input-container>
+      </div>
+
+      <div class="divPad">
+        <md-button class="md-raised md-primary" type="submit" name="submit" value="Register" ng-click="vm.registerUser()" />Submit</md-button>
+        <md-button class="md-raised md-danger" ng-click="vm.cancel()">Cancel</button>
+      </div>
+    </form>
 
 </div>

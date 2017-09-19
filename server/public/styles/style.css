@@ -112,6 +112,6 @@ li a:hover {
 }
 
 /* Prevents weird delay caused by nganimate */
-.ng-hide.ng-hide-animate{
+.ng-hide .ng-hide-animate{
      display: none !important;
 }

@@ -1,47 +1,46 @@
 <div ng-include="'views/partials/nav.html'"></div>
 
 <div class="container divPad">
-    <div class="btn-group" ng-hide="vm.userObject.userId != vm.currentList.list.userId">
-        <button class="btn btn-primary" ng-click="vm.addNewItem = !vm.addNewItem">Add to the List!</button>
-        <button class="btn btn-warning">Emailer</button>
-    </div>
-</div>
-
-<!-- Now we gotta put stuff inside the list yo -->
-<div ng-show="vm.addNewItem" class="container divPad">
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label for="itemName" class="control-label col-sm-2">Add an item:</label>
-            <div class="col-sm-10">
-                <input name="itemName" type="text" placeholder="item name" ng-model="vm.item.name" class="form-control">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="itemDescription" class="control-label col-sm-2">Item description:</label>
-            <div class="col-sm-10">
-                <input name="itemDescription" type="text" placeholder="short and sweet" ng-model="vm.item.description" class="form-control">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="itemLink" class="control-label col-sm-2">Link:</label>
-            <div class="col-sm-10">
-                <input name="itemLink" type="text" placeholder="something specific?" ng-model="vm.item.link" class="form-control">
-            </div>
-        </div>
-        <button class="btn btn-warning" ng-click="vm.addItem(vm.item)">Add!</button>
-    </form>
-</div>
-
-
-
-
-<div class="container">
     <h3>
         {{vm.currentList.list.name}}
     </h3>
     <h4>
         {{vm.currentList.list.description}}
     </h4>
+
+    <div class="container divPad">
+        <div class="btn-group" ng-hide="vm.userObject.userId != vm.currentList.list.userId">
+            <button class="btn btn-primary" ng-click="vm.addNewItem = !vm.addNewItem">Add to the List!</button>
+            <button class="btn btn-warning">Emailer</button>
+            
+        </div>
+    </div>
+
+    <!-- Now we gotta put stuff inside the list yo -->
+    <div ng-show="vm.addNewItem" class="container divPad">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="itemName" class="control-label col-sm-2">Add an item:</label>
+                <div class="col-sm-6">
+                    <input name="itemName" type="text" placeholder="item name" ng-model="vm.item.name" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="itemDescription" class="control-label col-sm-2">Item description:</label>
+                <div class="col-sm-6">
+                    <input name="itemDescription" type="text" placeholder="short and sweet" ng-model="vm.item.description" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="itemLink" class="control-label col-sm-2">Link:</label>
+                <div class="col-sm-6">
+                    <input name="itemLink" type="text" placeholder="something specific?" ng-model="vm.item.link" class="form-control">
+                </div>
+            </div>
+            <button class="btn btn-warning" ng-click="vm.addItem(vm.item)">Add!</button>
+        </form>
+    </div>
+
     <div class="container">
         <div class="row">
 
@@ -70,7 +69,7 @@
                 <p class="btn-group" ng-hide="vm.userObject.userId != vm.currentList.list.userId">
 
                     <a ng-href="{{item.link}}">
-                    <button class="btn btn-sm btn-info" ng-if="item.link != ''">
+                    <button class="btn btn-sm btn-info" ng-hide="!item.link">
                         Link!
                     </button>
                     </a>
