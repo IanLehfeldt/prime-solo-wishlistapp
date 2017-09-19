@@ -12,6 +12,9 @@
     <script type="text/javascript" src="vendors/angular/angular.min.js"></script>
     <script type="text/javascript" src="vendors/angular-route/angular-route.min.js"></script>
     <!-- <script type="text/javascript" src="vendors/angular/angular-animate.min.js"></script> -->
+    <script type="text/javascript" src="vendors/sweetalert2/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="vendors/sweetalert2/sweetalert2.min.css">
+
 
     <!-- BootstrapUI -->
     <!-- <script type="text/javascript" src="styles/bootstrap/ui-bootstrap.js"></script> -->
@@ -35,7 +38,7 @@
 
 <body ng-app="myApp">
 
-    <header ng-include="'/views/partials/header.html'"></header>
+    <header ng-controller="UserController as vm" ng-include="'/views/partials/header.html'"></header>
 
     <main ng-view></main>
 

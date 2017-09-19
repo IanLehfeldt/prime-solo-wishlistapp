@@ -37,6 +37,12 @@ myApp.controller('LoginController', function($http, $location, UserService) {
         console.log('LoginController -- registerUser -- sending to server...', self.user);
         $http.post('/register', self.user).then(function(response) {
           console.log('LoginController -- registerUser -- success');
+          swal({
+            title: 'Registered!',
+            text: 'Welcome to Wishlist!',
+            type: 'success',
+            confirmButtonText: 'Login!'
+          });
           $location.path('/home');
         }).catch(function(response) {
           console.log('LoginController -- registerUser -- error');

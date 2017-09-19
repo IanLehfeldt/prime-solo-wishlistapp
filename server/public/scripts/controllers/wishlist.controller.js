@@ -56,7 +56,22 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
     // handling delete current list
     self.deleteCurrentList = () => {
         //console.log('Current list delete!!');
-        ListService.deleteCurrentList($routeParams.id);
+        swal({
+            title: 'Are you sure you want to delete this list??',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: "Oops! No Way!"
+          }).then(function () {
+            swal(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            )
+            ListService.deleteCurrentList($routeParams.id);
+          });
     }
     //
 

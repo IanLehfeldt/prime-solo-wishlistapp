@@ -1,6 +1,6 @@
 <div ng-include="'views/partials/nav.html'"></div>
 
-<h1 class="divPad">Welcome, {{vm.userObject.userName}}!</h1>
+<!-- <h1>Welcome, {{vm.userObject.userName}}!</h1> -->
 
 <div class="container divPad">
     <p><button class="btn btn-primary" style="font-size: 2em;" ng-click="vm.startNewList = !vm.startNewList">Start a new list!!</button></p>
@@ -24,7 +24,7 @@
     <div class="container divPad">
         <h2>Current Lists:</h2>
         <div class="row">
-            <div ng-repeat="list in vm.wishlists.lists" class="col-md-4" ng-model="wishlists">
+            <div ng-repeat="list in vm.wishlists.lists" class="col-md-6" ng-model="wishlists">
                 <p>
 
                     <div class="listDiv divPad">
