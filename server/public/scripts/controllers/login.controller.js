@@ -44,4 +44,12 @@ myApp.controller('LoginController', function($http, $location, UserService) {
         });
       }
     }
+
+    self.registerPage = () => {
+      $location.path('/register');
+    }
+
+    self.cancelRegister = () => {
+      $location.path('/home');
+    }
 });
