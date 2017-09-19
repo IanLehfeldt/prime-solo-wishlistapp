@@ -1,6 +1,7 @@
 myApp.controller('WishController', ['UserService', 'ListService', '$routeParams', '$http', '$location', function (UserService, ListService, $routeParams, $http, $location) {
     console.log('WishController created');
     var self = this;
+    self.item = {};
     self.userService = UserService;
     self.currentList = ListService.currentList;
     ListService.getList($routeParams.id);
@@ -28,15 +29,26 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
 
     // handling items
     self.addItem = (item) => {
-        // shoving events to handle
-        item.list = $routeParams.id;
-        item.bought = false;
-        item.secret = false;
-        // log checker
-        //console.log('Item to send to server: ', item);
-        // function
-        self.addNewItem = false;
-        ListService.addItem(item);
+        if (self.item.name === undefined || self.item.description === undefined) {
+            swal({
+                title: "You need a name AND a description!",
+                type: 'warning'
+            })
+        } else {
+            // shoving events to handle
+            item.list = $routeParams.id;
+            item.bought = false;
+            item.secret = false;
+            // log checker
+            //console.log('Item to send to server: ', item);
+            // function
+            self.addNewItem = false;
+            swal({
+                title: "Item Added",
+                type: 'info'
+            })
+            ListService.addItem(item);
+        }
     }
 
     self.updateItem = (itemEdit) => {
@@ -49,6 +61,10 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
     self.deleteItem = (item) => {
         item.list = $routeParams.id;
         //console.log('Delete item button is clicked!');
+        swal({
+            title: 'Item Deleted',
+            type: 'info',
+        });
         ListService.deleteItem(item);
     }
     // end handling items
@@ -64,14 +80,14 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!',
             cancelButtonText: "Oops! No Way!"
-          }).then(function () {
+        }).then(function () {
             swal(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
             )
             ListService.deleteCurrentList($routeParams.id);
-          });
+        });
     }
     //
 
