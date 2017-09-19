@@ -78,11 +78,11 @@ myApp.controller('UserController', ['UserService', 'ListService', '$http', '$loc
   self.saveList = (list) => {
     list.userId = self.userObject.userId;
     console.log('Editing list: ', list);
-    swal({
-      title: 'List Updated!',
-      type: 'info',
-      confirmButtonText: 'Thanks!'
-    });
+    // swal({
+    //   title: 'List Updated!',
+    //   type: 'info',
+    //   confirmButtonText: 'Thanks!'
+    // });
     ListService.saveList(list);
   }
 

@@ -118,7 +118,7 @@ router.get('/:id', function (req, res) {
 });
 
 router.get('/list/:id', function (req, res) {
-    if (req.isAuthenticated) {
+
         Wishlist.find({
             _id: req.params.id
         }, function (err, list) {
@@ -130,9 +130,7 @@ router.get('/list/:id', function (req, res) {
                 res.send(list[0]);
             }
         })
-    } else {
-        res.sendStatus(403);
-    }
+
 });
 // end wishlist routes
 

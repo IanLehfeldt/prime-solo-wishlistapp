@@ -16,13 +16,17 @@ body, html {
 } */
 
 .instructions {
-  background-color: #816C61;
+  background-color: #2274A5;
   padding: 15px;
   color: #eee;
 }
 
+.footer{
+  background-color: #2274A5;
+}
+
 .navbar {
-  background-color: #816C61;
+  background-color: #2274A5;
   width: 100%;
   border-radius: 0px;
 }
@@ -86,7 +90,7 @@ li a {
 /* Change the link color to #111 (black) on hover */
 li a:hover {
   text-decoration: underline;
-  color: #eee;
+  color: #000;
 }
 
 /* Additional CSS I'm working on: */
@@ -104,11 +108,19 @@ li a:hover {
 }
 
 .itemBought {
-  background-color: #816C61;
+  background-color: #E3C535;
 }
 
 .divPad {
-  padding: 10px;
+  padding: 18px;
+}
+
+.bottomPad {
+  padding-bottom: 80px;
+}
+
+.rightPad {
+  padding-right: 12px;
 }
 
 /* Prevents weird delay caused by nganimate */

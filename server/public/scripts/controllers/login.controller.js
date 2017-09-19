@@ -58,4 +58,5 @@ myApp.controller('LoginController', function($http, $location, UserService) {
     self.cancelRegister = () => {
       $location.path('/home');
     }
+
 });
