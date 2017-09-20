@@ -2,6 +2,15 @@
 
 <div class="container divPad">
     <div class="btn-group" ng-hide="vm.userObject.userId != vm.currentList.list.userId">
+        <div class="dropdown">
+            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                      Quick List!
+                    </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a ng-repeat="list in vm.wishlists.lists" class="dropdown-item" href="#/wishlist/{{list._id}}">{{list.name}}</a>
+            </div>
+        </div>
         <button class="btn btn-primary" ng-click="vm.addNewItem = !vm.addNewItem">Add to the List!</button>
         <button class="btn btn-warning">Emailer</button>
     </div>
@@ -9,7 +18,7 @@
 
 <!-- Now we gotta put stuff inside the list yo -->
 <div ng-show="vm.addNewItem" class="container divPad">
-    <form class="form-horizontal">
+    <form>
         <div class="form-group">
             <div class="col-sm-10">
                 <input name="itemName" type="text" placeholder="Item Name" ng-model="vm.item.name" class="form-control">
