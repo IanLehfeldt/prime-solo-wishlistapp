@@ -12,7 +12,7 @@
             </div>
         </div>
         <button class="btn btn-primary" ng-click="vm.addNewItem = !vm.addNewItem">Add to the List!</button>
-        <button class="btn btn-warning">Emailer</button>
+        <button class="btn btn-warning" ng-click="vm.emailList()">Emailer</button>
     </div>
 </div>
 
@@ -51,7 +51,7 @@
     <div class="container">
         <div class="row">
 
-            <div class='itemDiv col-sm-5 divPad' ng-repeat="item in vm.currentList.list.items" ng-style="buyStyle" ng-class="{ 'itemBought' : item.bought }">
+            <div class='itemDiv col-md-5 divPad' ng-repeat="item in vm.currentList.list.items" ng-style="buyStyle" ng-class="{ 'itemBought' : item.bought }">
                 <p>
                     <span>
                     {{item.name}}

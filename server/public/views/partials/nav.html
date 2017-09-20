@@ -1,23 +1,33 @@
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-  <button ng-hide="!vm.userObject.userId" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+  <button ng-hide="!vm.userObject.userId" class="navbar-toggler" style="width: 100%;" type="button" data-toggle="collapse"
+    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul ng-hide="!vm.userObject.userId" class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#/user">Your Lists!</a>
+        <a class="nav-link" href="#/user"><button class="btn btn-success">Your Lists!</button></a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="#/info">Info Page</a>
+      </li> -->
+      <li class="nav-item navbar-right">
+        <a class="nav-link" href="#">
+          <button class="btn btn-warning" ng-click="vm.userService.logout()" ng-hide="!vm.userObject.userId">
+            Log Out
+          </button>
+        </a>
+      </li>
+      <li class="nav-item navbar-right">
+        <a class="nav-link" href="#">
+        <button class="btn btn-info" ng-show="!vm.userObject.userId" ng-click="vm.login()">
+          Log In
+        </button>
+        </a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-        <ul class="nav navbar-nav navbar-right">
-            <li class="rightPad"><button class="btn btn-warning navbar-btn" ng-click="vm.userService.logout()" ng-hide="!vm.userObject.userId">Log Out</button></li>
-          </ul>
-    </form>
   </div>
-  <button class="btn btn-info navbar-btn" ng-show="!vm.userObject.userId" ng-click="vm.login()">Log In</button>
+
 </nav>

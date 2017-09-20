@@ -83,11 +83,17 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
         }).then(function () {
             swal(
                 'Deleted!',
-                'Your file has been deleted.',
+                'Your list has been deleted.',
                 'success'
             )
             ListService.deleteCurrentList($routeParams.id);
         });
+    }
+    //
+
+    // email current list
+    self.emailList = () => {
+        console.log('Email button clicked');
     }
     //
 
