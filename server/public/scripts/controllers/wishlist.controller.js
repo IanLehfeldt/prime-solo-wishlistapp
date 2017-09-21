@@ -27,8 +27,11 @@ myApp.controller('WishController', ['UserService', 'ListService', 'EmailService'
     }
     // end user auth
 
+    // handling falsy statements
+
     // handling items
     self.addItem = (item) => {
+        // supposed to close email list if its already opened
         if (self.item.name === undefined || self.item.description === undefined) {
             swal({
                 title: "You need a name AND a description!",

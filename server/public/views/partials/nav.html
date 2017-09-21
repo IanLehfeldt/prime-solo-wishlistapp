@@ -1,18 +1,18 @@
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
 
-  <button ng-hide="!vm.userObject.userId" class="navbar-toggler" style="width: 100%;" type="button" data-toggle="collapse"
+  <button class="navbar-toggler" style="width: 100%;" type="button" data-toggle="collapse"
     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul ng-hide="!vm.userObject.userId" class="navbar-nav mr-auto">
-      <li class="nav-item">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"  ng-hide="!vm.userObject.userId" >
         <a class="nav-link" href="#/user"><button class="btn btn-success navbarButton">Your Lists!</button></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item"  ng-hide="!vm.userObject.userId" >
         <a class="nav-link" href="#">
-          <button class="btn btn-danger navbarButton" ng-click="vm.userService.logout()" ng-hide="!vm.userObject.userId">
+          <button class="btn btn-danger navbarButton" ng-click="vm.userService.logout()">
             Log Out
           </button>
         </a>
@@ -20,7 +20,7 @@
       <li class="nav-item">
         <a class="nav-link" href="#">
         <button class="btn btn-info navbarButton" ng-show="!vm.userObject.userId" ng-click="vm.login()">
-          Log In
+          Log In or Register!
         </button>
         </a>
       </li>
