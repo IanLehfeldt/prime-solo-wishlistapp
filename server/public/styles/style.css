@@ -31,6 +31,10 @@ body, html {
   border-radius: 0px;
 }
 
+.navbarButton {
+  width: 100%;
+}
+
 .instructions .container h1 {
   font-size: 32px;
   font-weight: 600;
@@ -64,20 +68,19 @@ body, html {
   background-color: #eeeeee;
 } 
 
-.btn-danger{
+/* .btn-danger{
   margin-left: 10px;
-}
+} */
 
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 
-li {
+/* li {
   float: left;
-}
+} */
 
 li a {
   display: block;

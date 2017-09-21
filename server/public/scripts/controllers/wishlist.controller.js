@@ -1,4 +1,4 @@
-myApp.controller('WishController', ['UserService', 'ListService', '$routeParams', '$http', '$location', function (UserService, ListService, $routeParams, $http, $location) {
+myApp.controller('WishController', ['UserService', 'ListService', 'EmailService', '$routeParams', '$http', '$location', function (UserService, ListService, EmailService, $routeParams, $http, $location) {
     console.log('WishController created');
     var self = this;
     self.item = {};
@@ -87,6 +87,14 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
                 'success'
             )
             ListService.deleteCurrentList($routeParams.id);
+        }, function (dismiss) {
+            if (dismiss === 'cancel') {
+                swal(
+                    'Cancelled!',
+                    'Your list is safe! ... For now.',
+                    'info'
+                )
+            }
         });
     }
     //
@@ -94,6 +102,42 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
     // email current list
     self.emailList = () => {
         console.log('Email button clicked');
+
+        // had high hopes to do it through sweetalerts, best to just use ngList
+        // swal.setDefaults({
+        //     input: 'text',
+        //     confirmButtonText: 'Next &rarr;',
+        //     showCancelButton: true,
+        //     animation: true
+        //   })
+          
+        //   var swalMsg = [
+        //     {
+        //       title: 'Email the wishlist to your friends!',
+        //       text: 'Seperate multiple emails by commas'
+        //     }
+        //   ]
+          
+        //   swal.queue(swalMsg).then(function (result) {
+        //       //result is the array with the direct information we put into the modal
+        //     swal.resetDefaults();
+        //     console.log('result: ', splitResult);
+        //     // function that splits result into an array by comma 
+        //     swal({
+        //       title: 'All done!',
+        //       html:
+        //         'Sending out your list to: <pre>'+
+        //            result
+        //         +'!</pre>',
+        //       confirmButtonText: 'Lovely!'
+        //     })
+        //     //console.log('Email list to send to server: ', result);
+        //   }, function () {
+        //     swal.resetDefaults()
+        //   })
+        // end high hopes
+        self.emailListInput = false;
+        //EmailService.emailList();
     }
     //
 
