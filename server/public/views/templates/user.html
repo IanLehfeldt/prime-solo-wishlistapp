@@ -28,7 +28,7 @@
                 <p>
                     <div class="listDiv divPad">
                         <p>
-                            <span ng-hide="listUpdate"><h4>{{list.name}}</h4></span>
+                            <div ng-hide="listUpdate"><h4>{{list.name}}</h4></div>
                             <span ng-show="listUpdate"><input type="text" placeholder="{{list.name}}" class="form-control" ng-model="list.name"></span>
 
                             <span ng-hide="listUpdate">{{list.description}}</span>

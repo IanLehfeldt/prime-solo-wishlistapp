@@ -50,10 +50,9 @@ myApp.service('ListService', ['$http', '$location', function ($http, $location) 
     // wishlist emailer
     self.emailList = (emails) => {
         console.log('Service hit with email info: ', emails);
-        
-        // $http.post('/emailList', emails).then(function (response) {
-        //     console.log('Emails sent thru mailer: ', response.data);
-        // })
+        $http.post('/emailer', emails).then(function (response) {
+            console.log('Emails sent thru mailer: ', response.data);
+        })
     }
     // end wishlist emailer
 

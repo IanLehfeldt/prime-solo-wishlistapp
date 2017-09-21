@@ -49,6 +49,7 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
                 type: 'info'
             })
             ListService.addItem(item);
+            self.item = {};
         }
     }
 

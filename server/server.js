@@ -9,10 +9,11 @@ var sessionConfig = require('./modules/session.config');
 var db = require('./modules/db.config.js');
 
 // Route includes
-var wishlist = require('./routes/wishlist.router');
 var indexRouter = require('./routes/index.router');
 var userRouter = require('./routes/user.router');
 var registerRouter = require('./routes/register.router');
+var wishlist = require('./routes/wishlist.router');
+var emailer = require('./routes/email.router')
 
 var port = process.env.PORT || 5000;
 
@@ -34,6 +35,7 @@ app.use(passport.session());
 app.use('/register', registerRouter);
 app.use('/user', userRouter);
 app.use('/wishlist', wishlist);
+app.use('/emailer', emailer);
 
 // Catch all bucket, must be last!
 app.use('/', indexRouter);
