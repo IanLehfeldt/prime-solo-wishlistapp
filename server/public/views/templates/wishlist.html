@@ -27,7 +27,8 @@
             <div class="col-sm-10">
                 <label for="emailInput">Email your Wishlist!</label>
                 <input name="emailInput" type="text" placeholder="Emails, seperated by comma" ng-model="vm.emails.emailList" class="form-control"
-                    ng-list> {{vm.emailList.emails}}
+                    ng-list>
+                <p>Currently Sending To: {{vm.emails.emailList}}</p>
                 <p>
                     <button class="btn btn-success" ng-click="vm.emailList(vm.emails)">Send!</button>
                 </p>
