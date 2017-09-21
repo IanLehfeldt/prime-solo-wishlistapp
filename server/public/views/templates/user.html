@@ -28,7 +28,9 @@
                 <p>
                     <div class="listDiv divPad">
                         <p>
-                            <div ng-hide="listUpdate"><h4>{{list.name}}</h4></div>
+                            <div ng-hide="listUpdate">
+                                <h4>{{list.name}}</h4>
+                            </div>
                             <span ng-show="listUpdate"><input type="text" placeholder="{{list.name}}" class="form-control" ng-model="list.name"></span>
 
                             <span ng-hide="listUpdate">{{list.description}}</span>
@@ -37,19 +39,18 @@
 
                         <br>
 
-                        <div class="btn-group">
+                        <div class="btn-group pull-right">
                             <a ng-href="#/wishlist/{{list._id}}">
-                            <button class="btn btn-primary">Items: {{list.items.length}}</button>
+                                <button class="btn btn-primary">Items: {{list.items.length}}
+                                </button>
                             </a>
 
-                            <button class="btn btn-success">Bought: {{ ( list.items | filter: { bought: true } ).length }}</button>
-                        </div>
-                        <div class="btn-group pull-right">
+                            <button class="btn btn-sm btn-success">Bought: {{ ( list.items | filter: { bought: true } ).length }}</button>
                             <button class="btn btn-warning" ng-click="listUpdate = !listUpdate">Update</button>
 
-                            <button class="btn btn-warning" ng-click="vm.saveList(list)" ng-show="listUpdate">Save</button>
+                            <button class="btn btn-sm btn-warning" ng-click="vm.saveList(list)" ng-show="listUpdate">Save</button>
 
-                            <button class="btn btn-danger" ng-click="vm.deleteList(list)">Delete</button>
+                            <button class="btn btn-sm btn-danger" ng-click="vm.deleteList(list)">Delete</button>
                         </div>
                     </div>
                 </p>

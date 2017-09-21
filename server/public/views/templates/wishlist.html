@@ -11,9 +11,9 @@
                 <a ng-repeat="list in vm.wishlists.lists" class="dropdown-item" href="#/wishlist/{{list._id}}">{{list.name}}</a>
             </div>
         </div>
-        <button ng-click="vm.inputDiv = 'addNewItemInput'" class="btn btn-primary">Add to the List!</button>
-        <button ng-click="vm.inputDiv = 'emailInput'" class="btn btn-warning">Emailer</button>
-        <button ng-click="vm.inputDiv = default" class="btn btn-danger">X</button>
+        <button ng-click="vm.inputDiv = 'addNewItemInput'" class="btn btn-primary btn-sm">Add to the List!</button>
+        <button ng-click="vm.inputDiv = 'emailInput'" class="btn btn-warning btn-sm">Emailer</button>
+        <button ng-click="vm.inputDiv = default" class="btn btn-danger btn-sm">X</button>
     </div>
 </div>
 
@@ -72,10 +72,16 @@
     <h4>
         {{vm.currentList.list.description}}
     </h4>
+
     <div class="container">
+        <p>
+            <button ng-click="vm.sortBy('name')" class="btn btn-sm btn-info">By Name</button>
+            <button ng-click="vm.sortBy('bought')" class="btn btn-sm btn-warning">By Bought</button>
+        </p>
         <div class="row">
 
-            <div class='itemDiv col-md-5 divPad' ng-repeat="item in vm.currentList.list.items" ng-style="buyStyle" ng-class="{ 'itemBought' : item.bought }">
+            <div class='itemDiv col-md-5 divPad' ng-repeat="item in vm.currentList.list.items | orderBy : vm.itemSorter : vm.reverse" ng-style="buyStyle"
+                ng-class="{ 'itemBought' : item.bought }">
                 <p>
                     <h4>
                         {{item.name}}
@@ -122,6 +128,7 @@
 
 <div class="nav navbar-nav navbar-fixed-bottom container divPad" ng-hide="vm.userObject.userId != vm.currentList.list.userId">
     <div class="container">
+        <button class="btn btn-info navbar-right" ng-click="vm.backToTop()">Back To Top!</button>
         <button class="btn btn-danger navbar-right" ng-click="vm.deleteCurrentList()">Delete Current List</button>
     </div>
 </div>

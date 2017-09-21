@@ -1,4 +1,4 @@
-myApp.controller('WishController', ['UserService', 'ListService', '$routeParams', '$http', '$location', function (UserService, ListService, $routeParams, $http, $location) {
+myApp.controller('WishController', ['UserService', 'ListService', '$routeParams', '$http', '$location', '$window', function (UserService, ListService, $routeParams, $http, $location, $window) {
     console.log('WishController created');
     var self = this;
     self.item = {};
@@ -106,9 +106,42 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
         console.log('Email button clicked, sending email(s): ', emails);
 
         //Fix this later for heroku
-        emails.link = 'http://localhost:5000/#/wishlist/' +$routeParams.id;
+        emails.link = 'http://localhost:5000/#/wishlist/' + $routeParams.id;
         emails.user = self.userObject.userName;
-        // had high hopes to do it through sweetalerts, best to just use ngList
+
+
+
+        self.inputDiv = 'Default';
+        swal({
+            title: 'List is being sent!',
+            type: 'info'
+        })
+        ListService.emailList(emails);
+        self.emails = {};
+    }
+    //
+
+    // anchor's away!
+    self.backToTop = () =>{
+        $window.scrollTo(0, 0);
+    }
+
+    // handles sorting functions
+    self.itemSorter = 'name';
+    self.reverse = false;
+  
+    self.sortBy = function(itemSorter) {
+      self.reverse = (self.itemSorter === itemSorter) ? !self.reverse : true;
+      self.itemSorter = itemSorter;
+    };
+
+    //check user, check lists
+    self.getuser();
+}]);
+
+//Source wishcontroller into index, set up to handle wishlist params
+
+// had high hopes to do it through sweetalerts, best to just use ngList
 
         // swal.setDefaults({
         //     input: 'text',
@@ -116,14 +149,14 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
         //     showCancelButton: true,
         //     animation: true
         //   })
-          
+
         //   var swalMsg = [
         //     {
         //       title: 'Email the wishlist to your friends!',
         //       text: 'Seperate multiple emails by commas'
         //     }
         //   ]
-          
+
         //   swal.queue(swalMsg).then(function (result) {
         //       //result is the array with the direct information we put into the modal
         //     swal.resetDefaults();
@@ -141,19 +174,4 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
         //   }, function () {
         //     swal.resetDefaults()
         //   })
-        // end high hopes
-
-        self.inputDiv = 'Default';
-        swal({
-            title: 'List is being sent!',
-            type: 'info'
-        })
-        ListService.emailList(emails);
-        self.emails = {};
-    }
-    //
-
-    //check user, check lists
-    self.getuser();
-}]);
-//Source wishcontroller into index, set up to handle wishlist params
+ // end high hopes
