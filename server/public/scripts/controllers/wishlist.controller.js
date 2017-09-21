@@ -1,4 +1,4 @@
-myApp.controller('WishController', ['UserService', 'ListService', 'EmailService', '$routeParams', '$http', '$location', function (UserService, ListService, EmailService, $routeParams, $http, $location) {
+myApp.controller('WishController', ['UserService', 'ListService', '$routeParams', '$http', '$location', function (UserService, ListService, $routeParams, $http, $location) {
     console.log('WishController created');
     var self = this;
     self.item = {};
@@ -16,7 +16,7 @@ myApp.controller('WishController', ['UserService', 'ListService', 'EmailService'
                 //Call for wishlists to populate dropdown
                 //ListService.getLists(self.userObject.userId);
             } else {
-                console.log('Failure getting user');
+                console.log('Currently not logged in.');
             }
         });
     }
@@ -26,8 +26,6 @@ myApp.controller('WishController', ['UserService', 'ListService', 'EmailService'
         $location.path('/home');
     }
     // end user auth
-
-    // handling falsy statements
 
     // handling items
     self.addItem = (item) => {
@@ -45,7 +43,7 @@ myApp.controller('WishController', ['UserService', 'ListService', 'EmailService'
             // log checker
             //console.log('Item to send to server: ', item);
             // function
-            self.addNewItem = false;
+            self.inputDiv = 'Default';
             swal({
                 title: "Item Added",
                 type: 'info'
@@ -103,9 +101,12 @@ myApp.controller('WishController', ['UserService', 'ListService', 'EmailService'
     //
 
     // email current list
-    self.emailList = () => {
-        console.log('Email button clicked');
+    self.emailList = (emails) => {
+        console.log('Email button clicked, sending email(s): ', emails);
 
+        //Fix this later for heroku
+        emails.link = 'http://localhost:5000/#/wishlist/' +$routeParams.id;
+        emails.user = self.userObject.userName;
         // had high hopes to do it through sweetalerts, best to just use ngList
 
         // swal.setDefaults({
@@ -140,12 +141,14 @@ myApp.controller('WishController', ['UserService', 'ListService', 'EmailService'
         //     swal.resetDefaults()
         //   })
         // end high hopes
-        self.emailListInput = false;
+
+        self.inputDiv = 'Default';
         swal({
             title: 'List is being sent!',
             type: 'info'
         })
-        //EmailService.emailList();
+        ListService.emailList(emails);
+        self.emails = {};
     }
     //
 

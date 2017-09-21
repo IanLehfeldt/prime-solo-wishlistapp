@@ -21,7 +21,7 @@ myApp.service('ListService', ['$http', '$location', function ($http, $location) 
     }
 
     self.saveList = (list) => {
-        $http.put('/wishlist', list).then(function (response){
+        $http.put('/wishlist', list).then(function (response) {
             console.log('List updated: ', response.data);
             self.getLists(list.userId);
         })
@@ -46,25 +46,36 @@ myApp.service('ListService', ['$http', '$location', function ($http, $location) 
             self.currentList.list = response.data;
         });
     }
+
+    // wishlist emailer
+    self.emailList = (emails) => {
+        console.log('Service hit with email info: ', emails);
+        
+        // $http.post('/emailList', emails).then(function (response) {
+        //     console.log('Emails sent thru mailer: ', response.data);
+        // })
+    }
+    // end wishlist emailer
+
     //end handling wishlists
 
     //handling items
     self.addItem = (item) => {
-        $http.post('/wishlist/additem', item).then(function(response){
+        $http.post('/wishlist/additem', item).then(function (response) {
             console.log('Item inserted into DB: ', response.data);
             self.getList(item.list);
         });
     }
 
     self.editItem = (itemEdit) => {
-        $http.put('/wishlist/edititem', itemEdit).then(function (response){
+        $http.put('/wishlist/edititem', itemEdit).then(function (response) {
             console.log('Item updated!', response.data);
             self.getList(itemEdit.list);
         })
     }
 
     self.deleteItem = (item) => {
-        $http.put('wishlist/deleteitem', item).then(function(response){
+        $http.put('wishlist/deleteitem', item).then(function (response) {
             console.log('Item deleted!', response.data);
             self.getList(item.list);
         })

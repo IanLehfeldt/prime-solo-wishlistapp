@@ -45,4 +45,6 @@ sendMail = function () {
 
 //sendMail() function that sends the mail
 //email route should be a post in order to send dynamic information - you have the right idea with the email array to send to multiple users, you do not need a pool to do that
+
+router.post('/', emails)
 module.exports = router;
