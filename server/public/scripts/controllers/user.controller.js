@@ -19,7 +19,7 @@ myApp.controller('UserController', ['UserService', 'ListService', '$http', '$loc
         ListService.getLists(self.userObject.userId);
       } else {
         console.log('Not Logged In');
-        $location.path('/home');
+        //omg I cant believe i forgot to take out the $location.path
       }
     });
   }

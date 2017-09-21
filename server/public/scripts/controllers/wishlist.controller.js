@@ -104,6 +104,7 @@ myApp.controller('WishController', ['UserService', 'ListService', 'EmailService'
         console.log('Email button clicked');
 
         // had high hopes to do it through sweetalerts, best to just use ngList
+
         // swal.setDefaults({
         //     input: 'text',
         //     confirmButtonText: 'Next &rarr;',
@@ -137,6 +138,10 @@ myApp.controller('WishController', ['UserService', 'ListService', 'EmailService'
         //   })
         // end high hopes
         self.emailListInput = false;
+        swal({
+            title: 'List is being sent!',
+            type: 'info'
+        })
         //EmailService.emailList();
     }
     //

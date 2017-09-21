@@ -20,8 +20,11 @@
     <div class="form-group">
         <div class="col-sm-10">
             <label for="emailInput">Email list!</label>
-            <input name="emailInput" type="text" placeholder="Emails, seperated by comma" ng-model="vm.emailList.emails" class="form-control" ng-list>
-            {{vm.emailList.emails}}
+            <input name="emailInput" type="text" placeholder="Emails, seperated by comma" ng-model="vm.emailList.emails" class="form-control"
+                ng-list> {{vm.emailList.emails}}
+            <p>
+                <button class="btn btn-success" ng-click="vm.emailList(vm.emailList)">Send!</button>
+            </p>
         </div>
     </div>
 </div>
@@ -64,14 +67,15 @@
 
             <div class='itemDiv col-md-5 divPad' ng-repeat="item in vm.currentList.list.items" ng-style="buyStyle" ng-class="{ 'itemBought' : item.bought }">
                 <p>
-                    <span>
-                    {{item.name}}
-                    </span>
+                    <h4>
+                        {{item.name}}
+                    </h4>
                 </p>
 
-                <p> <span ng-hide="itemUpdater">
-                    {{item.description}}
-                    </span>
+                <p>
+                    <h5 ng-hide="itemUpdater">
+                        {{item.description}}
+                    </h5>
                     <input type="text" placeholder="{{item.description}}" ng-show="itemUpdater" ng-model="item.description" class="form-control input-sm">
                 </p>
                 <p>
@@ -79,7 +83,7 @@
                 </p>
 
                 <div ng-hide="itemUpdater">
-                    <label class="checkbox-inline"><input type="checkbox" value="" ng-model="item.bought" ng-click="vm.updateItem(item)"> Bought It! </label>
+                    <label class="checkbox-inline"><input type="checkbox" value="" ng-model="item.bought" ng-click="vm.updateItem(item)"> Got it! </label>
 
                     <label ng-hide="vm.userObject.userId" class="checkbox-inline divPad"><input type="checkbox" value="" ng-model="item.secret" ng-click="vm.updateItem(item)"> Shhhh! </label>
                 </div>
