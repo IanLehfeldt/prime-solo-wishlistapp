@@ -23,8 +23,9 @@
 
     <div class="container divPad">
         <h2>Current Lists:</h2>
+        <input class="form-control col-sm-4" placeholder="Filter Lists" ng-model="searchList">
         <div class="row">
-            <div ng-repeat="list in vm.wishlists.lists" class="col-md-8" ng-model="wishlists">
+            <div ng-repeat="list in vm.wishlists.lists | filter:searchList" class="col-md-8" ng-model="wishlists">
                 <p>
                     <div class="listDiv divPad">
                         <p>
@@ -56,4 +57,8 @@
                 </p>
             </div>
         </div>
+    </div>
+
+    <div class="nav navbar-nav navbar-fixed-bottom container divPad">
+        <button class="btn btn-info navbar-right" ng-click="vm.backToTop()">Back To Top!</button>
     </div>

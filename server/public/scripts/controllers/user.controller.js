@@ -1,4 +1,4 @@
-myApp.controller('UserController', ['UserService', 'ListService', '$http', '$location', function (UserService, ListService, $http, $location) {
+myApp.controller('UserController', ['UserService', 'ListService', '$http', '$location', '$window', function (UserService, ListService, $http, $location, $window) {
   var self = this;
   self.newList = {
     name: '',
@@ -36,7 +36,7 @@ myApp.controller('UserController', ['UserService', 'ListService', '$http', '$loc
 
   //list route handling
   self.startList = (newList) => {
-    if (self.newList.name === '' || self.newList.description === '' ) {
+    if (self.newList.name === '' || self.newList.description === '') {
       swal({
         title: 'Please name and describe your list!',
         type: 'warning'
@@ -88,6 +88,11 @@ myApp.controller('UserController', ['UserService', 'ListService', '$http', '$loc
   }
 
   //end list route handling
+
+  // anchors away!
+  self.backToTop = () => {
+    $window.scrollTo(0, 0);
+  }
 
   //handles get route(s)
   self.getuser();
