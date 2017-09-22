@@ -47,19 +47,16 @@ router.post('/', function (req, res) {
     }
 
     if (req.isAuthenticated) {
-
-
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
                 return console.log(error);
+                res.sendStatus(500);
             }
             // console.log('Message %s sent: %s', info.messageId, info.response);
             console.log('messageId:', info.messageId);
             console.log('response', info.response);
+            res.sendStatus(200);
         })
-
-
-
     } else {
         res.sendStatus(403);
     }

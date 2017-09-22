@@ -1,14 +1,8 @@
 body, html {
-  margin: 0;
-  padding: 0;
+  height: 100;
   font-family: sans-serif;
   font-size: 14px;
   background-color: #E7DFC6;
-}
-
-.footer {
-  position: relative;
-  bottom: 0;
 }
 
 /* h3, h4 {
@@ -19,10 +13,14 @@ body, html {
   background-color: #2274A5;
   padding: 15px;
   color: #eee;
+  top: 0;
 }
 
-.footer{
+.footer {
   background-color: #2274A5;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 .navbar {

@@ -107,7 +107,7 @@
                 <div class="btn-group" ng-hide="vm.userObject.userId != vm.currentList.list.userId">
 
                     <a ng-href="{{item.link}}">
-                    <button class="btn btn-info" ng-hide="item.link!='' ">
+                    <button class="btn btn-info" ng-hide="item.link === null ">
                         Link!
                     </button>
                     </a>
@@ -126,7 +126,7 @@
 
 
 
-<div class="nav navbar-nav navbar-fixed-bottom container divPad" ng-hide="vm.userObject.userId != vm.currentList.list.userId">
+<div class="footer nav navbar-nav navbar-fixed-bottom container divPad" ng-hide="vm.userObject.userId != vm.currentList.list.userId">
     <div class="container">
         <button class="btn btn-info navbar-right" ng-click="vm.backToTop()">Back To Top!</button>
         <button class="btn btn-danger navbar-right" ng-click="vm.deleteCurrentList()">Delete Current List</button>

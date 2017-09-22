@@ -36,6 +36,7 @@
 
                             <span ng-hide="listUpdate">{{list.description}}</span>
                             <span ng-show="listUpdate"><input type="text" placeholder="{{list.description}}" class="form-control" ng-model="list.description"></span>
+                            <button class="btn btn-warning" ng-click="vm.saveList(list)" ng-show="listUpdate">Save</button>
                         </p>
 
                         <br>
@@ -48,9 +49,6 @@
 
                             <button class="btn btn-sm btn-success">Bought: {{ ( list.items | filter: { bought: true } ).length }}</button>
                             <button class="btn btn-warning" ng-click="listUpdate = !listUpdate">Update</button>
-
-                            <button class="btn btn-sm btn-warning" ng-click="vm.saveList(list)" ng-show="listUpdate">Save</button>
-
                             <button class="btn btn-sm btn-danger" ng-click="vm.deleteList(list)">Delete</button>
                         </div>
                     </div>
@@ -58,7 +56,8 @@
             </div>
         </div>
     </div>
+</div>
 
-    <div class="nav navbar-nav navbar-fixed-bottom container divPad">
-        <button class="btn btn-info navbar-right" ng-click="vm.backToTop()">Back To Top!</button>
-    </div>
+<div class="footer nav navbar-nav navbar-fixed-bottom container divPad">
+    <button class="btn btn-info navbar-right" ng-click="vm.backToTop()">Back To Top!</button>
+</div>
