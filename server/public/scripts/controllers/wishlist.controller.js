@@ -109,8 +109,6 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
         emails.link = 'http://localhost:5000/#/wishlist/' + $routeParams.id;
         emails.user = self.userObject.userName;
 
-
-
         self.inputDiv = 'Default';
         swal({
             title: 'List is being sent!',

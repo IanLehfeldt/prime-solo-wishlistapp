@@ -2,7 +2,7 @@
 
 <!-- <h1>Welcome, {{vm.userObject.userName}}!</h1> -->
 
-<div class="container divPad">
+<div class="container bottomPad divPad">
     <p><button class="btn btn-primary" style="font-size: 2em;" ng-click="vm.startNewList = !vm.startNewList">Start a new list!!</button></p>
 
     <div ng-show="vm.startNewList">
@@ -58,6 +58,6 @@
     </div>
 </div>
 
-<div class="footer nav navbar-nav navbar-fixed-bottom container divPad">
-    <button class="btn btn-info navbar-right" ng-click="vm.backToTop()">Back To Top!</button>
+<div class="footer nav navbar-nav container divPad">
+    <button class="btn btn-info" ng-click="vm.backToTop()">Back To Top!</button>
 </div>
