@@ -5,7 +5,6 @@ var router = express.Router();
 var emailUser = process.env.EMAIL_USER || require('../../config.js').user;
 var emailPass = process.env.EMAIL_PASS || require('../../config.js').pass;
 
-
 // setup email data with unicode symbols
 // var mailOptions = {
 //     from: '"WelcomeToWishlist" <welcometowishlist@gmail.com>', // sender address
