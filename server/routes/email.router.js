@@ -45,7 +45,7 @@ router.post('/', function (req, res) {
         html: '<b>Welcome to Wishlist!</b> <h4>' + user + ' would like you to check out their Wishlist!</h4> <p>You can view items on their list and let the user know if you\'d like to buy them something off their list or keep it a secret to them! ( ' + user + ' wont be able to see, but other friends totally can! )</p> Come check it out @ <a href=' + link + '>Wishlist!</a>'
     }
 
-    if (req.isAuthenticated) {
+    if (req.isAuthenticated()) {
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
                 return console.log(error);

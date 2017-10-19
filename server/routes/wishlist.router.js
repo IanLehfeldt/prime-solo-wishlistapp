@@ -5,7 +5,7 @@ var Wishlist = require('../models/wishlist.js');
 
 // wishlist routes
 router.post('/', function (req, res) {
-    if (req.isAuthenticated) {
+    if (req.isAuthenticated()) {
         var newWishlistToSave = new Wishlist(req.body);
         newWishlistToSave.save(function (err, data) {
             if (err) {
@@ -36,7 +36,7 @@ router.post('/', function (req, res) {
 });
 
 router.put('/', function (req, res) {
-    if (req.isAuthenticated) {
+    if (req.isAuthenticated()) {
         Wishlist.findByIdAndUpdate(
             {
                 _id: req.body._id
@@ -61,7 +61,7 @@ router.put('/', function (req, res) {
 })
 
 router.delete('/:id', function (req, res) {
-    if (req.isAuthenticated) {
+    if (req.isAuthenticated()) {
         Wishlist.findByIdAndRemove(
             {
                 _id: req.params.id
@@ -81,7 +81,7 @@ router.delete('/:id', function (req, res) {
 
 router.delete('/:id', function (req, res) {
     var listId = req.params.id;
-    if (req.isAuthenticated) {
+    if (req.isAuthenticated()) {
         Wishlist.findByIdAndRemove(
             {
                 _id: listId
@@ -99,8 +99,9 @@ router.delete('/:id', function (req, res) {
     }
 })
 
+//Finds all user's lists
 router.get('/:id', function (req, res) {
-    if (req.isAuthenticated) {
+    if (req.isAuthenticated()) {
         Wishlist.find({
             userId: req.params.id
         }, function (err, lists) {
@@ -117,6 +118,7 @@ router.get('/:id', function (req, res) {
     }
 });
 
+//finds a single list
 router.get('/list/:id', function (req, res) {
 
         Wishlist.find({
@@ -137,7 +139,7 @@ router.get('/list/:id', function (req, res) {
 // item routes
 router.post('/additem', function (req, res) {
     var item = req.body;
-    if (req.isAuthenticated) {
+    if (req.isAuthenticated()) {
         Wishlist.findOneAndUpdate({
             _id: item.list
         },
@@ -196,7 +198,7 @@ router.put('/edititem', function (req, res) {
 
 router.put('/deleteitem/', function (req, res) {
     var item = req.body;
-    if (req.isAuthenticated) {
+    if (req.isAuthenticated()) {
         Wishlist.findOneAndUpdate({
             "_id": item.list,
         },
