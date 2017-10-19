@@ -106,7 +106,7 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
         console.log('Email button clicked, sending email(s): ', emails);
 
         //Fix this later for heroku
-        emails.link = 'http://localhost:5000/#/wishlist/' + $routeParams.id;
+        emails.link = 'https://prime-solo-wishlist.herokuapp.com/#/wishlist/' + $routeParams.id;
         emails.user = self.userObject.userName;
 
         self.inputDiv = 'Default';
