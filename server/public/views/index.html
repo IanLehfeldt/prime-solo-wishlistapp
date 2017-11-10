@@ -13,15 +13,9 @@
     <script type="text/javascript" src="vendors/angular/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="vendors/sweetalert2/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="vendors/sweetalert2/sweetalert2.min.css">
-    <!-- <script src="vendors/jquery/jquery-3.2.1.min.js"></script> -->
 
     <!-- Client -->
     <script type="text/javascript" src="scripts/client.js"></script>
-
-    <!-- UIBootstrap -->
-    <!-- <script type="text/javascript" src="styles/bootstrap/ui-bootstrap.js"></script> -->
-    <!-- <script type="text/javascript" src="styles/bootstrap/ui-bootstrap-tpls.js"></script>
-    <link rel="stylesheet" href="styles/bootstrap/ui-bootstrap-csp.css"> -->
 
     <!-- Controllers -->
     <script type="text/javascript" src="scripts/controllers/info.controller.js"></script>
@@ -31,7 +25,7 @@
 
     <!-- Services -->
     <script type="text/javascript" src="scripts/services/user.service.js"></script>
-    <script src="scripts/services/list.service.js"></script>
+    <script type="text/javascript" src="scripts/services/list.service.js"></script>
     
 
     <!-- Styles -->
@@ -47,7 +41,7 @@
 
 <body ng-app="myApp">
 
-    <header ng-controller="UserController as vm" ng-include="'/views/partials/header.html'"></header>
+    <header ng-include="'/views/partials/header.html'"></header>
 
     <main ng-view></main>
 

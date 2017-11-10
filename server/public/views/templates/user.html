@@ -3,23 +3,41 @@
 <!-- <h1>Welcome, {{vm.userObject.userName}}!</h1> -->
 
 <div class="container bottomPad divPad">
-    <p><button class="btn btn-primary" style="font-size: 2em;" ng-click="vm.startNewList = !vm.startNewList">Start a new list!!</button></p>
+    <p>
+        <button class="btn btn-primary" style="font-size: 2em;" data-toggle="modal" data-target="#newListModal">Start a new list!!</button>
+    </p>
 
-    <div ng-show="vm.startNewList">
-        <form>
-            <div class="form-group">
-                <input class="form-control col-md-6" type="text" placeholder="Wishlist Name" ng-model="vm.newList.name" name="wishlist.name">
+    <div class="modal fade" id="newListModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Add a new List!</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <input class="form-control col-md-6" type="text" placeholder="Wishlist Name" ng-model="vm.newList.name" name="wishlist.name">
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control col-md-6" type="text" placeholder="List Description" ng-model="vm.newList.description" name="wishlist.description">
+                        </div>
+
+                        <button class="btn btn-danger" ng-click="vm.startList(vm.newList)" class="close" data-dismiss="modal">Add list!</button>
+                    </form>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
-
-            <div class="form-group">
-                <input class="form-control col-md-6" type="text" placeholder="List Description" ng-model="vm.newList.description" name="wishlist.description">
-            </div>
-
-            <button class="btn btn-danger" ng-click="vm.startList(vm.newList)">Add list!</button>
-        </form>
+        </div>
     </div>
-
-
 
     <div class="container divPad">
         <h2>Current Lists:</h2>
@@ -32,10 +50,14 @@
                             <div ng-hide="listUpdate">
                                 <h4>{{list.name}}</h4>
                             </div>
-                            <span ng-show="listUpdate"><input type="text" placeholder="{{list.name}}" class="form-control" ng-model="list.name"></span>
+                            <span ng-show="listUpdate">
+                                <input type="text" placeholder="{{list.name}}" class="form-control" ng-model="list.name">
+                            </span>
 
                             <span ng-hide="listUpdate">{{list.description}}</span>
-                            <span ng-show="listUpdate"><input type="text" placeholder="{{list.description}}" class="form-control" ng-model="list.description"></span>
+                            <span ng-show="listUpdate">
+                                <input type="text" placeholder="{{list.description}}" class="form-control" ng-model="list.description">
+                            </span>
                             <button class="btn btn-warning" ng-click="vm.saveList(list)" ng-show="listUpdate">Save</button>
                         </p>
 

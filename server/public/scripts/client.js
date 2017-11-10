@@ -1,13 +1,13 @@
 var myApp = angular.module('myApp', ['ngRoute', 'ngSanitize']);
 
 /// Routes ///
-myApp.config(function($routeProvider, $locationProvider) {
+myApp.config(function ($routeProvider, $locationProvider) {
   $locationProvider.hashPrefix('');
   console.log('myApp -- config')
   $routeProvider
     .when('/home', {
       templateUrl: '/views/templates/home.html',
-      controller: 'LoginController as vm',
+      controller: 'LoginController as vm'
     })
     .when('/register', {
       templateUrl: '/views/templates/register.html',
@@ -17,7 +17,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as vm',
       resolve: {
-        getuser : function(UserService){
+        function(UserService) {
           return UserService.getuser();
         }
       }
@@ -26,7 +26,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/info.html',
       controller: 'InfoController as vm',
       resolve: {
-        getuser : function(UserService){
+        function(UserService) {
           return UserService.getuser();
         }
       }

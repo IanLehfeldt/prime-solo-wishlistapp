@@ -5,21 +5,24 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
     self.userService = UserService;
     self.currentList = ListService.currentList;
     ListService.getList($routeParams.id);
-
+    ListService.getLists(self.userService.userObject.userId);
     // user authentication for later
-    self.userObject = {};
-    self.getuser = () => {
-        $http.get('/user').then(function (response) {
-            if (response.data.username) {
-                self.userObject.userId = response.data.id;
-                self.userObject.userName = response.data.username;
-                //Call for wishlists to populate dropdown
-                //ListService.getLists(self.userObject.userId);
-            } else {
-                console.log('Currently not logged in.');
-            }
-        });
-    }
+    // UserService.getuser();
+    // console.log('UserService userObject: ', UserService.userObject);
+    
+    // self.userObject = {};
+    // self.getuser = () => {
+    //     $http.get('/user').then(function (response) {
+    //         if (response.data.username) {
+    //             self.userObject.userId = response.data.id;
+    //             self.userObject.userName = response.data.username;
+    //             //Call for wishlists to populate dropdown
+    //             //ListService.getLists(self.userObject.userId);
+    //         } else {
+    //             console.log('Currently not logged in.');
+    //         }
+    //     });
+    // }
     self.wishlists = ListService.wishlists;
 
     self.login = () => {
@@ -106,7 +109,7 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
         console.log('Email button clicked, sending email(s): ', emails);
         //Fix this later for heroku
         emails.link = 'https://prime-solo-wishlist.herokuapp.com/#/wishlist/' + $routeParams.id;
-        emails.user = self.userObject.userName;
+        emails.user = self.userService.userObject.userName;
         self.inputDiv = 'Default';
         swal({
             title: 'List is being sent!',
@@ -132,42 +135,5 @@ myApp.controller('WishController', ['UserService', 'ListService', '$routeParams'
     };
 
     //check user, check lists
-    self.getuser();
+    // UserService.getuser();
 }]);
-
-//Source wishcontroller into index, set up to handle wishlist params
-
-// had high hopes to do it through sweetalerts, best to just use ngList
-
-        // swal.setDefaults({
-        //     input: 'text',
-        //     confirmButtonText: 'Next &rarr;',
-        //     showCancelButton: true,
-        //     animation: true
-        //   })
-
-        //   var swalMsg = [
-        //     {
-        //       title: 'Email the wishlist to your friends!',
-        //       text: 'Seperate multiple emails by commas'
-        //     }
-        //   ]
-
-        //   swal.queue(swalMsg).then(function (result) {
-        //       //result is the array with the direct information we put into the modal
-        //     swal.resetDefaults();
-        //     console.log('result: ', splitResult);
-        //     // function that splits result into an array by comma 
-        //     swal({
-        //       title: 'All done!',
-        //       html:
-        //         'Sending out your list to: <pre>'+
-        //            result
-        //         +'!</pre>',
-        //       confirmButtonText: 'Lovely!'
-        //     })
-        //     //console.log('Email list to send to server: ', result);
-        //   }, function () {
-        //     swal.resetDefaults()
-        //   })
- // end high hopes

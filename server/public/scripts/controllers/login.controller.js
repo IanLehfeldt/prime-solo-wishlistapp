@@ -1,4 +1,4 @@
-myApp.controller('LoginController', function($http, $location, UserService) {
+myApp.controller('LoginController', function($http, $location) {
     console.log('LoginController created');
     var self = this;
     self.user = {
@@ -6,6 +6,9 @@ myApp.controller('LoginController', function($http, $location, UserService) {
       password: ''
     };
     self.message = '';
+
+    // UserService.getuser();
+    // self.userService = UserService;
 
     self.login = function() {
       console.log('LoginController -- login');

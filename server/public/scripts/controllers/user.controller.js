@@ -6,33 +6,31 @@ myApp.controller('UserController', ['UserService', 'ListService', '$http', '$loc
   };
   console.log('UserController created');
 
-  // handles log out
-  self.userService = UserService;
-
   // handles new user call, checks if user is logged in
+  // UserService.getuser();
+  self.userService = UserService;
+  // console.log('UserObject from service: ', UserService.userObject);
+
+  // ListService.getLists(self.userService.userObject.userId);
+  // console.log('User Service User Object: ', UserService);
+
   self.userObject = {};
-  self.getuser = () => {
-    $http.get('/user').then(function (response) {
-      if (response.data.username) {
-        self.userObject.userId = response.data.id;
-        self.userObject.userName = response.data.username;
-        ListService.getLists(self.userObject.userId);
-      } else {
-        console.log('Not Logged In');
-        // omg I cant believe i forgot to take out the $location.path
-        // $location.path('/home');
-      }
-    });
-  }
-  console.log('userObject: ', self.userObject);
-  // 
+  $http.get('/user').then(function (response) {
+    if (response.data.username) {
+      self.userObject.userId = response.data.id;
+      self.userObject.userName = response.data.username;
+      ListService.getLists(self.userObject.userId);
+    } else {
+      console.log('Not Logged In');
+    }
+  });
+  // console.log('userObject: ', self.userObject);
+
 
   // handles wishlist population
   self.wishlists = ListService.wishlists;
   console.log('Wishlists recieved: ', ListService.wishlists);
   // end wishlist population
-
-
 
   //list route handling
   self.startList = (newList) => {
@@ -42,7 +40,7 @@ myApp.controller('UserController', ['UserService', 'ListService', '$http', '$loc
         type: 'warning'
       })
     } else {
-      self.newList.userId = self.userObject.userId;
+      self.newList.userId = UserService.userObject.userId;
       //console.log('New wishlist as: ', self.newList);
       self.startNewList = false;
       swal({
@@ -56,7 +54,7 @@ myApp.controller('UserController', ['UserService', 'ListService', '$http', '$loc
   }
 
   self.deleteList = (list) => {
-    list.userId = self.userObject.userId;
+    list.userId = self.userService.userObject.userId;
     //console.log('Delete list: ', list);
     swal({
       title: 'Are you sure you want to delete this list??',
@@ -77,7 +75,7 @@ myApp.controller('UserController', ['UserService', 'ListService', '$http', '$loc
   }
 
   self.saveList = (list) => {
-    list.userId = self.userObject.userId;
+    list.userId = self.userService.userObject.userId;
     console.log('Editing list: ', list);
     // swal({
     //   title: 'List Updated!',
@@ -93,7 +91,4 @@ myApp.controller('UserController', ['UserService', 'ListService', '$http', '$loc
   self.backToTop = () => {
     $window.scrollTo(0, 0);
   }
-
-  //handles get route(s)
-  self.getuser();
 }]);

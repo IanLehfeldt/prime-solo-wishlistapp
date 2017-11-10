@@ -1,69 +1,93 @@
 <div ng-include="'views/partials/nav.html'"></div>
 
 <div class="container divPad">
-    <div class="btn-group" ng-hide="vm.userObject.userId != vm.currentList.list.userId">
+    <div class="btn-group" ng-hide="vm.userService.userObject.userId != vm.currentList.list.userId">
         <div class="dropdown">
             <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
-                      Quick List!
-                    </button>
+                Quick List!
+            </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a ng-repeat="list in vm.wishlists.lists" class="dropdown-item" href="#/wishlist/{{list._id}}">{{list.name}}</a>
             </div>
         </div>
-        <button ng-click="vm.inputDiv = 'addNewItemInput'" class="btn btn-primary btn-sm">Add to the List!</button>
-        <button ng-click="vm.inputDiv = 'emailInput'" class="btn btn-warning btn-sm">Emailer</button>
-        <button ng-click="vm.inputDiv = default" class="btn btn-danger btn-sm">X</button>
+        <button data-toggle="modal" data-target="#newItemModal" class="btn btn-primary btn-sm">Add to the List!</button>
+        <button data-toggle="modal" data-target="#emailListModal" class="btn btn-warning btn-sm">Emailer</button>
     </div>
 </div>
 
-<div ng-switch="vm.inputDiv">
-    <div ng-switch-when="Default">
-    </div>
+<div class="modal fade" id="newItemModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
-    <!-- Emails to mail out -->
-    <div ng-switch-when="emailInput" class="container divPad">
-        <div class="form-group">
-            <div class="col-sm-10">
-                <label for="emailInput">Email your Wishlist!</label>
-                <input name="emailInput" type="text" placeholder="Emails, seperated by comma" ng-model="vm.emails.emailList" class="form-control"
-                    ng-list>
-                <p>Currently Sending To: {{vm.emails.emailList}}</p>
-                <p>
-                    <button class="btn btn-success" ng-click="vm.emailList(vm.emails)">Send!</button>
-                </p>
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Add a new List!</h4>
+                <button type="button" data-dismiss="modal">&times;</button>
             </div>
-        </div>
-    </div>
 
-
-    <!-- Now we gotta put stuff inside the list yo -->
-    <div ng-switch-when="addNewItemInput" class="container divPad">
-        <div>
-            <div class="form-group">
-                <div class="col-sm-10">
-                    <input name="itemName" type="text" placeholder="Item Name" ng-model="vm.item.name" class="form-control">
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <input name="itemName" type="text" placeholder="Item Name" ng-model="vm.item.name" class="form-control">
+                    </div>
                 </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <input name="itemDescription" type="text" placeholder="Item Description" ng-model="vm.item.description" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <input name="itemLink" type="text" placeholder="Link" ng-model="vm.item.link" class="form-control">
+                        <br>
+                        <p>
+                            <button class="btn btn-success" data-dismiss="modal" ng-click="vm.addItem(vm.item)">Add!</button>
+                        </p>
+                    </div>
+                </div>
+                </form>
             </div>
-            <div class="form-group">
-                <div class="col-sm-10">
-                    <input name="itemDescription" type="text" placeholder="Item Description" ng-model="vm.item.description" class="form-control">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-10">
-                    <input name="itemLink" type="text" placeholder="Link" ng-model="vm.item.link" class="form-control">
-                    <p>
-                        <button class="btn btn-success" ng-click="vm.addItem(vm.item)">Add!</button>
-                    </p>
-                </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
 
+<div class="modal fade" id="emailListModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Email List!</h4>
+                <button type="button" data-dismiss="modal">&times;</button>
+            </div>
 
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <label for="emailInput">Email your Wishlist!</label>
+                        <input name="emailInput" type="text" placeholder="Emails, seperated by comma" ng-model="vm.emails.emailList" class="form-control"
+                            ng-list>
+                        <p>Currently Sending To: {{vm.emails.emailList}}</p>
+                        <p>
+                            <button class="btn btn-success" ng-click="vm.emailList(vm.emails)" data-dismiss="modal">Send!</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="container bottomPad">
     <h3>
@@ -100,21 +124,23 @@
 
                 <div ng-hide="itemUpdater">
                     <span ng-hide="item.secret">
-                    <label class="checkbox-inline"><input type="checkbox" value="" ng-model="item.bought" ng-click="vm.updateItem(item)"> Got it! </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" value="" ng-model="item.bought" ng-click="vm.updateItem(item)"> Got it! </label>
                     </span>
                     <br>
                     <span ng-hide="item.bought">
-                    <label ng-hide="vm.userObject.userId" class="checkbox-inline"><input type="checkbox" value="" ng-model="item.secret" ng-click="vm.updateItem(item)"> Shhhh! </label>
+                        <label ng-hide="vm.userService.userObject.userId" class="checkbox-inline">
+                            <input type="checkbox" value="" ng-model="item.secret" ng-click="vm.updateItem(item)"> Shhhh! </label>
                     </span>
                 </div>
 
                 <a ng-href="{{item.link}}">
-                        <button class="btn btn-info" ng-hide="item.link === null ">
-                            Link!
-                        </button>
-                        </a>
+                    <button class="btn btn-info" ng-hide="item.link === null ">
+                        Link!
+                    </button>
+                </a>
 
-                <div class="btn-group" ng-hide="vm.userObject.userId != vm.currentList.list.userId">
+                <div class="btn-group" ng-hide="vm.userService.userObject.userId != vm.currentList.list.userId">
 
                     <button class="btn btn-warning" ng-click="itemUpdater = !itemUpdater">Update</button>
 
@@ -130,7 +156,7 @@
 
 
 
-<div class="footer nav navbar-nav navbar-fixed-bottom container divPad" ng-hide="vm.userObject.userId != vm.currentList.list.userId">
+<div class="footer nav navbar-nav navbar-fixed-bottom container divPad" ng-hide="vm.userService.userObject.userId != vm.currentList.list.userId">
     <div class="container">
         <button class="btn btn-info navbar-right" ng-click="vm.backToTop()">Back To Top!</button>
         <button class="btn btn-danger navbar-right" ng-click="vm.deleteCurrentList()">Delete Current List</button>
