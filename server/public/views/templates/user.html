@@ -21,11 +21,11 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <input class="form-control col-md-6" type="text" placeholder="Wishlist Name" ng-model="vm.newList.name" name="wishlist.name">
+                            <input class="form-control" type="text" placeholder="Wishlist Name" ng-model="vm.newList.name" name="wishlist.name">
                         </div>
 
                         <div class="form-group">
-                            <input class="form-control col-md-6" type="text" placeholder="List Description" ng-model="vm.newList.description" name="wishlist.description">
+                            <input class="form-control" type="text" placeholder="List Description" ng-model="vm.newList.description" name="wishlist.description">
                         </div>
 
                         <button class="btn btn-danger" ng-click="vm.startList(vm.newList)" class="close" data-dismiss="modal">Add list!</button>
@@ -68,8 +68,15 @@
                                 <button class="btn btn-primary">Items: {{list.items.length}}
                                 </button>
                             </a>
-
-                            <button class="btn btn-sm btn-success">Bought: {{ ( list.items | filter: { bought: true } ).length }}</button>
+                            <div class="dropdown">
+                                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    Bought: {{ ( list.items | filter: { bought: true } ).length }}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a ng-repeat="item in list.items | filter: {bought: true}" class="dropdown-item">{{ item.name }}</a>
+                                </div>
+                            </div>
                             <button class="btn btn-warning" ng-click="listUpdate = !listUpdate">Update</button>
                             <button class="btn btn-sm btn-danger" ng-click="vm.deleteList(list)">Delete</button>
                         </div>
